@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+	
+	<!-- 文件上传 -->
+    <bean id="multipartResolver"  class="org.springframework.web.multipart.commons.CommonsMultipartResolver">  
+	<!-- one of the properties available; the maximum file size in bytes   -->
+   		<property name="maxInMemorySize" value="4096" />  
+        <property name="maxUploadSize" value="524288000"/>
+        <property name="defaultEncoding" value="UTF-8" />
+	</bean>
+	
+    <!-- 对模型视图名称的解析，即在模型视图名称添加前后缀 -->    
+    <bean  class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
+    <bean  class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
+    <bean  class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/jsp/" p:suffix=".jsp" />  
+           
+	<!-- Json输出 -->
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+	    <property name="messageConverters">
+	        <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+	        <property name="supportedMediaTypes">
+	            <list>
+	                <value>text/plain;charset=utf-8</value>
+	                <value>text/html;charset=utf-8</value>
+	                <value>text/json;charset=utf-8</value>
+	                <value>application/json;charset=utf-8</value>
+	            </list> 
+	        </property>
+	        </bean>
+	    </property>
+	</bean>
+</beans>
