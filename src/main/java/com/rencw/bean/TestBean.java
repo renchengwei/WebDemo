@@ -5,7 +5,11 @@ import java.util.Date;
 import org.apache.ibatis.type.Alias;
 
 @Alias("testBean")
-public class TestBean {
+public class TestBean extends BaseBean {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int id;
 	private String name;
 	private Date gmtCreate;

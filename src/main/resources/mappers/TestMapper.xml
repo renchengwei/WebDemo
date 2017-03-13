@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rencw.mapper.TestMapper">
 
-	<resultMap type="testBean" id="testResultMap">
+	<resultMap id="testResultMap" type="testBean">
 		<id column="id" property="id"/>
 		<result column="name" property="name"/>
 		<result column="gmt_create" property="gmtCreate"/>
@@ -28,7 +28,7 @@
 		select * from test
 	</select>
 	
-	<select id="selectTestById" resultType="testBean">
+	<select id="selectTestById" resultMap="testResultMap">
 		select * from test where id = #{id}
 	</select>
 </mapper>
