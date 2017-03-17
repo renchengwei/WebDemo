@@ -13,7 +13,30 @@
         http://www.springframework.org/schema/tx/spring-tx.xsd
         http://www.springframework.org/schema/task
         http://www.springframework.org/schema/task/spring-task-4.0.xsd">
-	<!-- 数据源配置 -->
+        
+    <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <property name="maxIdle" value="${redis.maxIdle}" />
+        <property name="maxTotal" value="${redis.maxActive}" />
+        <property name="maxWaitMillis" value="${redis.maxWait}" />
+        <property name="testOnBorrow" value="${redis.testOnBorrow}" />
+<!--         <property name="database" value="${redis.database}"/> -->
+    </bean>
+    
+    <bean id="connectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory" destroy-method="destroy">
+    	<property name="hostName" value="${redis.host}" />
+		<property name="port" value="${redis.port}" />
+		<property name="password" value="${redis.pass}" />
+		<property name="poolConfig" ref="poolConfig" />
+    </bean>
+      
+	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="connectionFactory" />
+	</bean>      
+	
+<!-- 	<bean id="jedisCacheTemplate" class="org.springframework.data.redis.core.RedisTemplate" -->
+<!-- 		p:connection-factory-ref="connectionFactory" /> -->
+	
+	<!-- MySql数据源配置 -->
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
 		init-method="init" destroy-method="close">
 		<!-- 基本属性 url、user、password -->
@@ -62,12 +85,10 @@
 
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
-<!-- 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate"> -->
-<!-- 		<constructor-arg index="0" ref="sqlSessionFactory" /> -->
-<!-- 	</bean> -->
-
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com.rencw.mapper" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
+	
+	
 </beans>

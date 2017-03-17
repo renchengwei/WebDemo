@@ -16,34 +16,34 @@
         http://www.springframework.org/schema/task
         http://www.springframework.org/schema/task/spring-task-4.0.xsd">
         
-	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
-		<property name="securityManager" ref="securityManager" />
-		<property name="filterChainDefinitions">
-			<value>
-				
-			</value>
-		</property>
-	</bean>
+<!-- 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean"> -->
+<!-- 		<property name="securityManager" ref="securityManager" /> -->
+<!-- 		<property name="loginUrl" value="/login.jsp"/> -->
+<!--     	<property name="successUrl" value="/home.jsp"/> -->
+<!--     	<property name="unauthorizedUrl" value="/unauthorized.jsp"/> -->
+<!--     	<<property name="filters"> -->
+<!--         	<util:map> -->
+<!--             	<entry key="authc" value-ref="formAuthenticationFilter"/> -->
+<!--         	</util:map> -->
+<!--     	</property>  -->
+<!-- 		<property name="filterChainDefinitions"> -->
+<!-- 			<value> -->
+<!-- 				/index.jsp = anon -->
+<!-- 				/**=authc -->
+<!-- 			</value> -->
+<!-- 		</property> -->
+<!-- 	</bean> -->
 
 	<!-- 缓存管理器 使用Ehcache实现 -->  
 	<bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">  
 	    <property name="cacheManagerConfigFile" value="classpath:conf/ehcache.xml"/>  
 	</bean>
 	
-	<bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">  
-	    <constructor-arg value="sid"/>  
-	    <property name="httpOnly" value="true"/>  
-	    <property name="maxAge" value="180000"/>  
-	</bean> 
-
-	<bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+	<bean id="sessionManager" class="org.apache.shiro.session.mgt.DefaultSessionManager">
 		<property name="globalSessionTimeout" value="1800000"/>  
 	    <property name="deleteInvalidSessions" value="true"/>
-	    <property name="sessionValidationSchedulerEnabled" value="true"/>
 	    <property name="sessionValidationScheduler" ref="sessionValidationScheduler"/>  
 	    <property name="sessionDAO" ref="sessionDAO"/>  
-	    <property name="sessionIdCookieEnabled" value="true"/>  
-    	<property name="sessionIdCookie" ref="sessionIdCookie"/>  
 	</bean>
 	
 	<!-- 会话DAO -->  
@@ -72,7 +72,7 @@
 	    <property name="authorizationCacheName" value="authorizationCache"/>  
 	</bean>
 	<!-- 安全管理器 -->  
-	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+	<bean id="securityManager" class="org.apache.shiro.mgt.DefaultSecurityManager">
 		<property name="realms">
 			<list>
 				<ref bean="userRealm" />

@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.shiro.web.filter.mgt.DefaultFilter;
 import org.junit.Test;
 
 import com.rencw.action.TestAction;

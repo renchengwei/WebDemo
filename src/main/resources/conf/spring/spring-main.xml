@@ -27,6 +27,7 @@
 		<property name="locations">
 			<array>
 				<value>classpath:/conf/config.properties</value>
+				<value>classpath:/conf/redis.properties</value>
 			</array>
 		</property>
 	</bean>
