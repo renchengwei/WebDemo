@@ -1,5 +1,7 @@
 package com.rencw.shiro.realm;
 
+import java.io.Serializable;
+
 import javax.annotation.Resource;
 
 import org.apache.shiro.authc.AuthenticationException;
@@ -12,13 +14,17 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.apache.shiro.util.ByteSource;
 
 import com.rencw.bean.User;
 import com.rencw.service.UserService;
+import com.rencw.shiro.SimpleByteSource;
 
-public class UserRealm extends AuthorizingRealm {
+public class UserRealm extends AuthorizingRealm implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Resource
 	private UserService userService;
 	
@@ -47,7 +53,7 @@ public class UserRealm extends AuthorizingRealm {
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
                 user.getUserName(), //用户名
                 user.getPassword(), //密码
-                ByteSource.Util.bytes(user.getCredentialsSalt()),//salt=username+salt
+                new SimpleByteSource(user.getCredentialsSalt().getBytes()),//salt=username+salt
                 getName()  //realm name
         );
         return authenticationInfo;
