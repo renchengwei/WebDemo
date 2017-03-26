@@ -2,7 +2,6 @@ package com.rencw;
 
 import javax.annotation.Resource;
 
-import org.apache.shiro.SecurityUtils;
 import org.junit.Test;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
@@ -13,7 +12,6 @@ public class TestRedis extends TestSpringBase {
 
 	@Resource
 	private RedisTemplate<String, String> redisTemplate;
-	
 	@Test
 	public void test1() {
 		
@@ -36,6 +34,10 @@ public class TestRedis extends TestSpringBase {
 				return null;
 			}
 		});
+	}
+	@Test
+	public void test3() {
+		
 	}
 	
 	

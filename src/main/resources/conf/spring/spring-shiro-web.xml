@@ -50,6 +50,13 @@
 		<property name="usernameParam" value="userName" />
 		<property name="passwordParam" value="password" />
 	</bean>
+	
+	<!-- 并发登录控制过滤器 -->  
+	<bean id="kickoutSessionControlFilter" class="com.rencw.shiro.filter.KickoutSessionControlFilter">
+		<property name="kickoutUrl" value="${kickout_url}" />
+		<property name="kickoutAfter" value="${kickout_after}" />
+		<property name="maxSession" value="${max_session}" />
+	</bean>
 
 	<bean id="logout" class="org.apache.shiro.web.filter.authc.LogoutFilter"> 
         <property name="redirectUrl" value="/login.jsp"/> 
@@ -62,12 +69,20 @@
 		<property name="filters">
 			<util:map>
 				<entry key="authc" value-ref="formAuthenticationFilter"/>
+				<entry key="kickout" value-ref="kickoutSessionControlFilter"/>
 			</util:map>
 		</property>
 		<property name="filterChainDefinitions">
 			<value>
+				/js/** = anon
+				/asets/** = anon
+				/css/** = anon
+				/fonts/** = anon
+				/img/** = anon
+				/js/** = anon
+				/login.jsp = authc
 				/logout = logout
-				/**=authc
+				/** = kickout,user
 			</value>
 		</property>
 	</bean>
@@ -78,7 +93,7 @@
 
 	<bean id="sessionManager"
 		class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
-		<property name="globalSessionTimeout" value="1800000" />
+		<property name="globalSessionTimeout" value="${session_timeout}" />
 		<property name="deleteInvalidSessions" value="true" />
 		<property name="sessionValidationScheduler" ref="sessionValidationScheduler" />
 		<property name="sessionDAO" ref="sessionDAO" />
@@ -89,17 +104,19 @@
 	<!-- 会话验证调度器 -->
 	<bean id="sessionValidationScheduler"
 		class="org.apache.shiro.session.mgt.quartz.QuartzSessionValidationScheduler">
-		<property name="sessionValidationInterval" value="1800000" />
+		<property name="sessionValidationInterval" value="3600000" />
 		<property name="sessionManager" ref="sessionManager" />
 	</bean>
 
 	<!-- 凭证匹配器 -->
 	<bean id="credentialsMatcher"
-		class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
-		<!-- <constructor-arg ref="cacheManager"/> -->
+		class="com.rencw.shiro.RetryLimitHashedCredentialsMatcher">
 		<property name="hashAlgorithmName" value="${password.algorithmName}" />
 		<property name="hashIterations" value="${password.hashIterations}" />
 		<property name="storedCredentialsHexEncoded" value="true" />
+		<property name="retryCount" value="${password_retry_count}" />
+		<property name="retryTime" value="${password_retry_time}" />
+		<property name="lockTime" value="${password_lock_time}" />
 	</bean>
 
 	<!-- 相当于调用SecurityUtils.setSecurityManager(securityManager) -->

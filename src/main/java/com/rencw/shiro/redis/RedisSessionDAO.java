@@ -44,11 +44,9 @@ public class RedisSessionDAO extends AbstractSessionDAO {
 			logger.error("session or session id is null");
 			return;
 		}
-		
 		byte[] key = getByteKey(session.getId());
 		byte[] value = SerializeUtils.serialize(session);
-		session.setTimeout(redisManager.getExpire()*1000);		
-		this.redisManager.set(key, value, redisManager.getExpire());
+		this.redisManager.set(key, value, session.getTimeout()/1000);
 	}
 
 	@Override
@@ -58,7 +56,6 @@ public class RedisSessionDAO extends AbstractSessionDAO {
 			return;
 		}
 		redisManager.del(this.getByteKey(session.getId()));
-
 	}
 
 	@Override
