@@ -75,7 +75,7 @@
 		<property name="filterChainDefinitions">
 			<value>
 				/js/** = anon
-				/asets/** = anon
+				/assets/** = anon
 				/css/** = anon
 				/fonts/** = anon
 				/img/** = anon

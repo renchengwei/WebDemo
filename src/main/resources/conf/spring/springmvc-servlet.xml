@@ -48,6 +48,13 @@
 			</bean>
 		</property>
 	</bean>
+	<!-- 静态资源过滤 -->
+	<mvc:resources location="/css/" mapping="/css/**"/>
+	<mvc:resources location="/assets/" mapping="/assets/**"/>
+	<mvc:resources location="/img/" mapping="/img/**"/>
+	<mvc:resources location="/fonts/" mapping="/fonts/**"/>
+	<mvc:resources location="/js/" mapping="/js/**"/>
+	
 	
 	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor"/>
 	<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
