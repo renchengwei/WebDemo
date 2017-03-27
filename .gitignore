@@ -1,5 +1,8 @@
 /target/
 /.classpath
-/.DS_Store
+.DS_Store
+*/.DS_Store/
 /.project
 /.settings/
+*/.gitignore
+/src/main/webapp/js/.DS_Store
