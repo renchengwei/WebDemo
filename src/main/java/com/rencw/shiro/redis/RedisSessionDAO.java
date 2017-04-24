@@ -13,8 +13,6 @@ import org.apache.shiro.session.mgt.eis.AbstractSessionDAO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.rencw.manager.RedisManager;
-
 public class RedisSessionDAO extends AbstractSessionDAO {
 
 	private static Logger logger = LoggerFactory.getLogger(RedisSessionDAO.class);
@@ -22,7 +20,7 @@ public class RedisSessionDAO extends AbstractSessionDAO {
 	 * shiro-redis的session对象前缀
 	 */
 	@Resource
-	private RedisManager redisManager;
+	private ShiroRedisManager shiroRedisManager;
 	
 	/**
 	 * The Redis key prefix for the sessions 
@@ -46,7 +44,7 @@ public class RedisSessionDAO extends AbstractSessionDAO {
 		}
 		byte[] key = getByteKey(session.getId());
 		byte[] value = SerializeUtils.serialize(session);
-		this.redisManager.set(key, value, session.getTimeout()/1000);
+		this.shiroRedisManager.set(key, value, session.getTimeout()/1000);
 	}
 
 	@Override
@@ -55,17 +53,17 @@ public class RedisSessionDAO extends AbstractSessionDAO {
 			logger.error("session or session id is null");
 			return;
 		}
-		redisManager.del(this.getByteKey(session.getId()));
+		shiroRedisManager.del(this.getByteKey(session.getId()));
 	}
 
 	@Override
 	public Collection<Session> getActiveSessions() {
 		Set<Session> sessions = new HashSet<Session>();
 		
-		Set<byte[]> keys = redisManager.keys(this.keyPrefix + "*");
+		Set<byte[]> keys = shiroRedisManager.keys(this.keyPrefix + "*");
 		if(keys != null && keys.size()>0){
 			for(byte[] key:keys){
-				Session s = (Session)SerializeUtils.deserialize(redisManager.get(key));
+				Session s = (Session)SerializeUtils.deserialize(shiroRedisManager.get(key));
 				sessions.add(s);
 			}
 		}
@@ -87,7 +85,7 @@ public class RedisSessionDAO extends AbstractSessionDAO {
 			logger.error("session id is null");
 			return null;
 		}
-		Session s = (Session)SerializeUtils.deserialize(redisManager.get(this.getByteKey(sessionId)));
+		Session s = (Session)SerializeUtils.deserialize(shiroRedisManager.get(this.getByteKey(sessionId)));
 		return s;
 	}
 	
@@ -101,12 +99,12 @@ public class RedisSessionDAO extends AbstractSessionDAO {
 		return preKey.getBytes();
 	}
 
-	public RedisManager getRedisManager() {
-		return redisManager;
+	public ShiroRedisManager getRedisManager() {
+		return shiroRedisManager;
 	}
 
-	public void setRedisManager(RedisManager redisManager) {
-		this.redisManager = redisManager;
+	public void setRedisManager(ShiroRedisManager redisManager) {
+		this.shiroRedisManager = redisManager;
 	}
 
 	/**

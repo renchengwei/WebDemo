@@ -15,8 +15,6 @@ import org.apache.shiro.util.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.rencw.manager.RedisManager;
-
 public class RedisCache<K, V> implements Cache<K, V> {
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -25,7 +23,7 @@ public class RedisCache<K, V> implements Cache<K, V> {
      * The wrapped Jedis instance.
      */
 	@Resource
-	private RedisManager cache;
+	private ShiroRedisManager cache;
 	
 	/**
 	 * The Redis key prefix for the sessions 
@@ -53,7 +51,7 @@ public class RedisCache<K, V> implements Cache<K, V> {
 	/**
 	 * 通过一个JedisManager实例构造RedisCache
 	 */
-	public RedisCache(RedisManager cache){
+	public RedisCache(ShiroRedisManager cache){
 		 if (cache == null) {
 	         throw new IllegalArgumentException("Cache argument cannot be null.");
 	     }
@@ -66,7 +64,7 @@ public class RedisCache<K, V> implements Cache<K, V> {
 	 * @param cache The cache manager instance
 	 * @param prefix The Redis key prefix
 	 */
-	public RedisCache(RedisManager cache, 
+	public RedisCache(ShiroRedisManager cache, 
 				String prefix){
 		 
 		this( cache );
@@ -190,5 +188,4 @@ public class RedisCache<K, V> implements Cache<K, V> {
             throw new CacheException(t);
         }
 	}
-
 }

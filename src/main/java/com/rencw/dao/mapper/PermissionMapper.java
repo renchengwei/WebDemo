@@ -1,4 +1,4 @@
-package com.rencw.mapper;
+package com.rencw.dao.mapper;
 
 import org.springframework.stereotype.Repository;
 

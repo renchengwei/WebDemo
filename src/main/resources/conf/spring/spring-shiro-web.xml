@@ -22,7 +22,7 @@
 	<bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">  
 	    <constructor-arg value="sid"/>  
 	    <property name="httpOnly" value="true"/>  
-	    <property name="maxAge" value="180000"/>  
+	    <property name="maxAge" value="1800"/>  
 	</bean>  
 	<!-- Realm实现 -->
 	<bean id="userRealm" class="com.rencw.shiro.realm.UserRealm">
@@ -65,7 +65,7 @@
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<property name="securityManager" ref="securityManager" />
 		<property name="loginUrl" value="/login.jsp"/>
-		<property name="successUrl" value="/index.jsp" />
+		<property name="successUrl" value="/index.html" />
 		<property name="filters">
 			<util:map>
 				<entry key="authc" value-ref="formAuthenticationFilter"/>
@@ -94,19 +94,20 @@
 	<bean id="sessionManager"
 		class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
 		<property name="globalSessionTimeout" value="${session_timeout}" />
-		<property name="deleteInvalidSessions" value="true" />
-		<property name="sessionValidationScheduler" ref="sessionValidationScheduler" />
+<!-- 		<property name="deleteInvalidSessions" value="true" /> -->
+<!-- 		<property name="sessionValidationScheduler" ref="sessionValidationScheduler" /> -->
+		<property name="sessionValidationSchedulerEnabled" value="false" />
 		<property name="sessionDAO" ref="sessionDAO" />
 		<property name="sessionIdCookieEnabled" value="true"/>  
     	<property name="sessionIdCookie" ref="sessionIdCookie"/>  
 	</bean>
 
 	<!-- 会话验证调度器 -->
-	<bean id="sessionValidationScheduler"
-		class="org.apache.shiro.session.mgt.quartz.QuartzSessionValidationScheduler">
-		<property name="sessionValidationInterval" value="3600000" />
-		<property name="sessionManager" ref="sessionManager" />
-	</bean>
+<!-- 	<bean id="sessionValidationScheduler" -->
+<!-- 		class="org.apache.shiro.session.mgt.quartz.QuartzSessionValidationScheduler"> -->
+<!-- 		<property name="sessionValidationInterval" value="10000" /> -->
+<!-- 		<property name="sessionManager" ref="sessionManager" /> -->
+<!-- 	</bean> -->
 
 	<!-- 凭证匹配器 -->
 	<bean id="credentialsMatcher"

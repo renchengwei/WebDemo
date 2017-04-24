@@ -13,9 +13,9 @@ import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.AccessControlFilter;
 import org.apache.shiro.web.util.WebUtils;
 
-import com.rencw.manager.RedisManager;
 import com.rencw.shiro.redis.RedisSessionDAO;
 import com.rencw.shiro.redis.SerializeUtils;
+import com.rencw.shiro.redis.ShiroRedisManager;
 
 public class KickoutSessionControlFilter extends AccessControlFilter{
 
@@ -24,7 +24,7 @@ public class KickoutSessionControlFilter extends AccessControlFilter{
     private int maxSession = 1; //同一个帐号最大会话数 默认1
     
     @Resource
-	private RedisManager redisManager;
+	private ShiroRedisManager shiroRedisManager;
     @Resource
     private RedisSessionDAO redisSessionDAO;
     
@@ -77,14 +77,14 @@ public class KickoutSessionControlFilter extends AccessControlFilter{
         
         //分布式并发锁控制，不依赖jvm，采用redis做同步锁控制，在分布式结构中仍然适用
         //同步锁锁定时间为5秒，5秒后自动释放锁
-        boolean lock = redisManager.setNX(lockKey,sessionId.toString().getBytes(), 5L);
+        boolean lock = shiroRedisManager.setNX(lockKey,sessionId.toString().getBytes(), 5L);
         while(!lock) {
         	Thread.sleep(100);
-        	lock = redisManager.setNX(lockKey,sessionId.toString().getBytes(), 5L);
+        	lock = shiroRedisManager.setNX(lockKey,sessionId.toString().getBytes(), 5L);
         }
         
         //获得同步锁以后继续执行
-        byte[] bytes = redisManager.get(key.getBytes());
+        byte[] bytes = shiroRedisManager.get(key.getBytes());
         Deque<Serializable> deque;
         if(bytes == null) {
         	deque = new LinkedList<Serializable>(); 
@@ -116,9 +116,9 @@ public class KickoutSessionControlFilter extends AccessControlFilter{
             }
         }
         
-        redisManager.set(key, SerializeUtils.serialize(deque));
+        shiroRedisManager.set(key, SerializeUtils.serialize(deque));
         //让出同步锁给等待的线程
-        redisManager.del(lockKey.getBytes());
+        shiroRedisManager.del(lockKey.getBytes());
 
         //如果被踢出了，直接退出，重定向到踢出后的地址
         if (session.getAttribute("kickout") != null) {

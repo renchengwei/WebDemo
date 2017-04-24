@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.apache.shiro.web.filter.mgt.DefaultFilter;
+import org.apache.shiro.web.servlet.ShiroHttpServletRequest;
 import org.junit.Test;
 
 import com.rencw.action.TestAction;

@@ -11,8 +11,6 @@ import org.apache.shiro.cache.CacheManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.rencw.manager.RedisManager;
-
 public class RedisCacheManager implements CacheManager {
 
 	private static final Logger logger = LoggerFactory
@@ -21,7 +19,7 @@ public class RedisCacheManager implements CacheManager {
 	// fast lookup by name map
 	private final ConcurrentMap<String, Cache> caches = new ConcurrentHashMap<String, Cache>();
 	@Resource
-	private RedisManager redisManager;
+	private ShiroRedisManager shiroRedisManager;
 
 	/**
 	 * The Redis key prefix for caches 
@@ -55,7 +53,7 @@ public class RedisCacheManager implements CacheManager {
 		if (c == null) {
 
 			// create a new cache instance
-			c = new RedisCache<K, V>(redisManager, keyPrefix);
+			c = new RedisCache<K, V>(shiroRedisManager, keyPrefix);
 			
 			// add it to the cache collection
 			caches.put(name, c);
@@ -63,12 +61,12 @@ public class RedisCacheManager implements CacheManager {
 		return c;
 	}
 
-	public RedisManager getRedisManager() {
-		return redisManager;
+	public ShiroRedisManager getRedisManager() {
+		return shiroRedisManager;
 	}
 
-	public void setRedisManager(RedisManager redisManager) {
-		this.redisManager = redisManager;
+	public void setRedisManager(ShiroRedisManager redisManager) {
+		this.shiroRedisManager = redisManager;
 	}
 
 }

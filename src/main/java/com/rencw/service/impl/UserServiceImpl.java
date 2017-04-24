@@ -11,7 +11,7 @@ import com.rencw.bean.Permission;
 import com.rencw.bean.Role;
 import com.rencw.bean.User;
 import com.rencw.bean.UserRole;
-import com.rencw.mapper.UserMapper;
+import com.rencw.dao.mapper.UserMapper;
 import com.rencw.service.UserService;
 import com.rencw.shiro.PasswordHelper;
 

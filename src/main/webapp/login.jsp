@@ -1,15 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="Mosaddek">
     <meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
     <link rel="shortcut icon" href="img/favicon.png">
-
     <title>分布式权限管理系统</title>
 
     <!-- Bootstrap core CSS -->
@@ -35,15 +32,12 @@
         <div class="login-wrap">
             <input type="text" class="form-control" name="userName" placeholder="用户名" autofocus>
             <input type="password" class="form-control" name="password" placeholder="密码">
-            	<!-- 
             <label class="checkbox">
-            
                 <input type="checkbox" value="remember-me"> 记住我
                 <span class="pull-right">
                     <a data-toggle="modal" href="#myModal"> 忘记密码?</a>
                 </span>
             </label>
-             -->
             <button class="btn btn-lg btn-login btn-block" type="submit">登录</button>
             <!-- 
             <p>or you can sign in via social network</p>

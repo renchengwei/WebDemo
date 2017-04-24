@@ -8,16 +8,16 @@ $(function() {
         speed: 'slow',
         showCount: false,
         autoExpand: true,
-//        cookie: 'dcjq-accordion-1',
+        cookie: 'dcjq-accordion-1',
         classExpand: 'dcjq-current-parent'
     });
 });
-
 // right slidebar
+/**
 $(function(){
  $.slidebars();
 });
-
+*/
 var Script = function () {
 
 //    sidebar dropdown menu auto scrolling
@@ -128,10 +128,21 @@ var Script = function () {
             }, 2000)
         })
     }
-
-
-
-
-
-
+//table
+    $('table.table tbody').on( 'click', 'tr', function () {
+    	if(!$(this).closest('table.table').hasClass('multiselect')){
+    		$(this).closest('table.table').find('tbody tr').toggleClass('success',false);
+    	}
+        $(this).toggleClass('success');
+    } );
+    
+    $.extend( $.fn.dataTable.defaults.oLanguage, {
+   	    "oPaginate": {
+   	      "sFirst": "首页",
+   	      "sLast":"尾页",
+   	      "sNext":"下一页",
+   	      "sPrevious":"上一页"
+   	    },
+   		"sInfo":"_START_ - _END_ 共 _TOTAL_ 条"
+    } );
 }();

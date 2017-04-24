@@ -1,4 +1,4 @@
-package com.rencw.manager;
+package com.rencw.service.manager;
 
 import java.util.Set;
 

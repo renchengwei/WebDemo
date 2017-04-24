@@ -5,7 +5,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.rencw.bean.Permission;
-import com.rencw.mapper.PermissionMapper;
+import com.rencw.dao.mapper.PermissionMapper;
 import com.rencw.service.PermissionService;
 
 @Service

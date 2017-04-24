@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.rencw.bean.TestBean;
 import com.rencw.dao.TestDao;
-import com.rencw.mapper.TestMapper;
+import com.rencw.dao.mapper.TestMapper;
 import com.rencw.service.TestService;
 
 @Service

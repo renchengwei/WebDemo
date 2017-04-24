@@ -7,12 +7,12 @@ import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.ExcessiveAttemptsException;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 
-import com.rencw.manager.RedisManager;
+import com.rencw.shiro.redis.ShiroRedisManager;
 
 public class RetryLimitHashedCredentialsMatcher extends HashedCredentialsMatcher {
 
 	@Resource
-	private RedisManager redisManager;
+	private ShiroRedisManager shiroRedisManager;
 	
 	/**
 	 * 默认重复登录次数
@@ -58,9 +58,9 @@ public class RetryLimitHashedCredentialsMatcher extends HashedCredentialsMatcher
 		String username = (String)token.getPrincipal();
 		String key = "password-retry-cache:" + username;
 		//计数器计算重复登录次数
-		long count = redisManager.incrBy(key, 1);
+		long count = shiroRedisManager.incrBy(key, 1);
 		if(count == 1) {
-			redisManager.expire(key, retryTime);
+			shiroRedisManager.expire(key, retryTime);
 		}
 		
 		//如果是初次登录，设置超时时间
@@ -70,9 +70,9 @@ public class RetryLimitHashedCredentialsMatcher extends HashedCredentialsMatcher
         boolean matches = super.doCredentialsMatch(token, info);  
         //登录成功后清除计数器
         if(matches) {  
-        	redisManager.del(key);
+        	shiroRedisManager.del(key);
         } else if(count == retryCount) {//没有成功并且最后一次尝试
-        	redisManager.expire(key, lockTime);
+        	shiroRedisManager.expire(key, lockTime);
 		}
 		return matches;
 	}

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.rencw.bean.Role;
 import com.rencw.bean.RolePermission;
-import com.rencw.mapper.RoleMapper;
+import com.rencw.dao.mapper.RoleMapper;
 import com.rencw.service.RoleService;
 
 @Service

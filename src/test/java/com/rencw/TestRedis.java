@@ -38,6 +38,14 @@ public class TestRedis extends TestSpringBase {
 	@Test
 	public void test3() {
 		
+		redisTemplate.execute(new RedisCallback<Object>() {
+			@Override
+			public Object doInRedis(RedisConnection connection) throws DataAccessException {
+				connection.set("aa".getBytes(), "bb".getBytes());
+				System.out.println(new String(connection.get("aa".getBytes())));
+				return null;
+			}
+		});
 	}
 	
 	
