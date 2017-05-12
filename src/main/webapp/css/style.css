@@ -4267,6 +4267,14 @@ span.customSelect.changed {
 
 /*advanced table*/
 
+.adv-table .clearfix {
+	padding-bottom: 10px;
+}
+
+.adv-table .clearfix button{
+	margin-right: 8px;
+}
+
 .adv-table table tr td {
     padding: 10px;
 }
