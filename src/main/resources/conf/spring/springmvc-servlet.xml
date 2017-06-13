@@ -59,9 +59,8 @@
 	</bean>
 	<!-- 静态资源过滤 -->
 	<mvc:resources location="/css/" mapping="/css/**"/>
-	<mvc:resources location="/assets/" mapping="/assets/**"/>
-	<mvc:resources location="/img/" mapping="/img/**"/>
-	<mvc:resources location="/fonts/" mapping="/fonts/**"/>
+	<mvc:resources location="/images/" mapping="/images/**"/>
+	<mvc:resources location="/vendors/" mapping="/vendors/**"/>
 	<mvc:resources location="/js/" mapping="/js/**"/>
 	<!-- 系统首页 -->
 	<mvc:view-controller path="/" view-name="redirect:/index.html"/>

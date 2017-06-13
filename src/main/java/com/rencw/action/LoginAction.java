@@ -18,7 +18,6 @@ public class LoginAction {
 		return "index";
 	}
 	
-	
 	@RequestMapping("/index.html")
 	public ModelAndView index(HttpServletRequest request,HttpServletResponse response,
 			ModelAndView modelAndView) {

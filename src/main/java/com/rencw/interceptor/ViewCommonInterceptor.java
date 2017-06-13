@@ -73,6 +73,7 @@ public class ViewCommonInterceptor implements HandlerInterceptor,ServletContextA
 		servletContext.setAttribute("staticServerPort", staticServerPort);
 		servletContext.setAttribute("staticServerPath", staticServerPath);
 		servletContext.setAttribute("appServer", "http://" + appServerHost + ":" + appServerPort + "/" + appServerPath);
+		servletContext.setAttribute("staticServer", "http://" + staticServerHost + ":" + staticServerPort + "/" + staticServerPath);
 	}
 
 }

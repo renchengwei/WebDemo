@@ -1,67 +1,46 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh">
 <body>
-	<!--sidebar start-->
-      <aside>
-          <div id="sidebar"  class="nav-collapse ">
-              <!-- sidebar menu start-->
-              <ul class="sidebar-menu" id="nav-accordion">
-                  <li>
-                      <a href="${appServer}/index.html">
-                          <i class="fa fa-dashboard"></i>
-                          <span>首页</span>
-                      </a>
-                  </li>
+	<div class="col-md-3 left_col">
+       <div class="left_col scroll-view">
+         <div class="navbar nav_title" style="border: 0;">
+           <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
+         </div>
 
-                  <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class="fa fa-laptop"></i>
-                          <span>系统监控</span>
-                      </a>
-                      <ul class="sub">
-                          <li><a  href="boxed_page.html">数据库监控</a></li>
-                      </ul>
-                  </li>
+         <div class="clearfix"></div>
 
-                  <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class="fa fa-book"></i>
-                          <span>用户管理</span>
-                      </a>
-                      <ul class="sub">
-                          <li><a  href="general.html">管理员管理</a></li>
-                          <li><a  href="buttons.html"> 个人信息</a></li>
-                          <li><a  href="modal.html">修改密码</a></li>
-                          <li><a  href="toastr.html">Toastr Notifications</a></li>
-                          <li><a  href="widget.html">Widget</a></li>
-                          <li><a  href="slider.html">Slider</a></li>
-                          <li><a  href="nestable.html">Nestable</a></li>
-                          <li><a  href="font_awesome.html">Font Awesome</a></li>
-                      </ul>
-                  </li>
-
-                  <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class="fa fa-cogs"></i>
-                          <span>权限管理</span>
-                      </a>
-                      <ul class="sub">
-                          <li><a  href="${appServer}/jsp/authority/menulist.jsp">菜单管理</a></li>
-                          <li><a  href="calendar.html">角色管理</a></li>
-                          <li><a  href="gallery.html">Gallery</a></li>
-                          <li><a  href="todo_list.html">Todo List</a></li>
-                          <li><a  href="draggable_portlet.html">Draggable Portlet</a></li>
-                          <li><a  href="tree.html">Tree View</a></li>
-                      </ul>
-                  </li>
-                  <!--multi level menu end-->
-
-              </ul>
-              <!-- sidebar menu end-->
-          </div>
-      </aside>
-      <!--sidebar end-->
+         <!-- sidebar menu -->
+         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+           <div class="menu_section">
+             <ul class="nav side-menu">
+               <li><a href="${appServer}/index.html"><i class="fa fa-home"></i> 首页</a></li>
+               <li><a><i class="fa fa-edit"></i> 用户管理 <span class="fa fa-chevron-down"></span></a>
+                 <ul class="nav child_menu">
+                   <li><a href="form.html">人员管理</a></li>
+                   <li><a href="form_advanced.html">个人信息</a></li>
+                   <li><a href="form_validation.html">修改密码</a></li>
+                 </ul>
+               </li>
+               <li><a><i class="fa fa-desktop"></i> 权限管理 <span class="fa fa-chevron-down"></span></a>
+                 <ul class="nav child_menu">
+                   <li><a href="${appServer}/jsp/authority/menulist.jsp">菜单管理</a></li>
+                   <li><a href="media_gallery.html">角色管理</a></li>
+                 </ul>
+               </li>
+               <li><a><i class="fa fa-desktop"></i> 系统监控 <span class="fa fa-chevron-down"></span></a>
+                 <ul class="nav child_menu">
+                   <li><a href="general_elements.html">数据库监控</a></li>
+                   <li><a href="general_elements.html">在线用户</a></li>
+                 </ul>
+               </li>
+               <li><a href="javascript:void(0)"><i class="fa fa-laptop"></i> Landing Page <span class="label label-success pull-right">Coming Soon</span></a></li>
+             </ul>
+           </div>
+         </div>
+         <!-- /sidebar menu -->
+       </div>
+     </div>
 </body>
 </html>

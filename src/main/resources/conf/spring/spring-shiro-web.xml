@@ -22,7 +22,7 @@
 	<bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">  
 	    <constructor-arg value="sid"/>  
 	    <property name="httpOnly" value="true"/>  
-	    <property name="maxAge" value="1800"/>  
+	    <property name="maxAge" value="-1"/>  
 	</bean>  
 	<!-- Realm实现 -->
 	<bean id="userRealm" class="com.rencw.shiro.realm.UserRealm">
@@ -74,14 +74,12 @@
 		</property>
 		<property name="filterChainDefinitions">
 			<value>
-				/js/** = anon
-				/assets/** = anon
+				/vendors/** = anon
 				/css/** = anon
-				/fonts/** = anon
-				/img/** = anon
+				/images/** = anon
 				/js/** = anon
 				/login.jsp = authc
-				/logout = logout
+				/logout.jsp = logout
 				/** = kickout,user
 			</value>
 		</property>

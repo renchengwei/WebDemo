@@ -1,493 +1,768 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<jsp:include page="/jsp/commoncss.jsp" />
-</head>
-<body>
-	<section id="container">
-		<jsp:include page="/jsp/header.jsp" />
-		<jsp:include page="/jsp/left.jsp" />
-		<!--main content start-->
-		<section id="main-content">
-			<section class="wrapper site-min-height">
-				<!-- 此处编写正文内容 -->
-				<div class="row">
-					<div class="col-lg-12">
-						<!--breadcrumbs start -->
-						<ul class="breadcrumb">
-							<li><i class="fa fa-home"></i>首页</li>
-							<li>权限管理</li>
-							<li>菜单管理</li>
-						</ul>
-						<!--breadcrumbs end -->
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-12">
-						<section class="panel">
-							<div class="panel-body">
-								<div class="adv-table">
-									<div class="row">
-										<div class="col-sm-6 ">
-											<button type="button" class="btn btn-info">
-												<i class="fa fa-plus"></i> 新增
-											</button>
-										</div>
-										<div class="col-sm-6">
-												<div class="form">
-													<div class="form-group">
-														<div class="iconic-input right">
-															<i class="fa fa-search"></i> <input type="search"
-																class="form-control" placeholder="关键字">
-														</div>
-													</div>
-<!-- 													<div class="form-group"> -->
-<!-- 														<button type="button" class="btn btn-default"> -->
-<!-- 															<i class="fa fa-plus"></i> 高级查询 -->
-<!-- 														</button> -->
-<!-- 													</div> -->
-												</div>
-										</div>
-									</div>
-									
-									
-									<table class="table table-bordered table-hover"
-										id="dynamic-table">
-										<thead>
-											<tr>
-												<th>Rendering engine</th>
-												<th>Browser</th>
-												<th>Platform(s)</th>
-												<th class="hidden-phone">Engine version</th>
-												<th class="hidden-phone">CSS grade</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>Trident</td>
-												<td>Internet Explorer 4.0</td>
-												<td>Win 95+</td>
-												<td class="center hidden-phone">4</td>
-												<td class="center hidden-phone">X</td>
-											</tr>
-											<tr>
-												<td>Trident</td>
-												<td>Internet Explorer 5.0</td>
-												<td>Win 95+</td>
-												<td class="center hidden-phone">5</td>
-												<td class="center hidden-phone">C</td>
-											</tr>
-											<tr>
-												<td>Trident</td>
-												<td>Internet Explorer 5.5</td>
-												<td>Win 95+</td>
-												<td class="center hidden-phone">5.5</td>
-												<td class="center hidden-phone">A</td>
-											</tr>
-											<tr>
-												<td>Trident</td>
-												<td>Internet Explorer 6</td>
-												<td>Win 98+</td>
-												<td class="center hidden-phone">6</td>
-												<td class="center hidden-phone">A</td>
-											</tr>
-											<tr>
-												<td>Trident</td>
-												<td>Internet Explorer 7</td>
-												<td>Win XP SP2+</td>
-												<td class="center hidden-phone">7</td>
-												<td class="center hidden-phone">A</td>
-											</tr>
-											<tr>
-												<td>Trident</td>
-												<td>AOL browser (AOL desktop)</td>
-												<td>Win XP</td>
-												<td class="center hidden-phone">6</td>
-												<td class="center hidden-phone">A</td>
-											</tr>
-											<tr>
-												<td>Gecko</td>
-												<td>Firefox 1.0</td>
-												<td>Win 98+ / OSX.2+</td>
-												<td class="center hidden-phone">1.7</td>
-												<td class="center hidden-phone">A</td>
-											</tr>
-											<tr>
-												<td>Gecko</td>
-												<td>Firefox 1.5</td>
-												<td>Win 98+ / OSX.2+</td>
-												<td class="center hidden-phone">1.8</td>
-												<td class="center hidden-phone">A</td>
-											</tr>
-											<tr>
-												<td>Gecko</td>
-												<td>Firefox 2.0</td>
-												<td>Win 98+ / OSX.2+</td>
-												<td class="center hidden-phone">1.8</td>
-												<td class="center hidden-phone">A</td>
-											</tr>
-											<tr>
-												<td>Gecko</td>
-												<td>Firefox 3.0</td>
-												<td>Win 2k+ / OSX.3+</td>
-												<td class="center hidden-phone">1.9</td>
-												<td class="center hidden-phone">A</td>
-											</tr>
-											<tr>
-												<td>Gecko</td>
-												<td>Camino 1.0</td>
-												<td>OSX.2+</td>
-												<td class="center hidden-phone">1.8</td>
-												<td class="center hidden-phone">A</td>
-											</tr>
-											<tr>
-												<td>Gecko</td>
-												<td>Camino 1.5</td>
-												<td>OSX.3+</td>
-												<td class="center hidden-phone">1.8</td>
-												<td class="center hidden-phone">A</td>
-											</tr>
-											<tr>
-												<td>Gecko</td>
-												<td>Netscape 7.2</td>
-												<td>Win 95+ / Mac OS 8.6-9.2</td>
-												<td class="center hidden-phone">1.7</td>
-												<td class="center hidden-phone">A</td>
-											</tr>
-											<tr>
-												<td>Gecko</td>
-												<td>Netscape Browser 8</td>
-												<td>Win 98SE+</td>
-												<td class="center hidden-phone">1.7</td>
-												<td class="center hidden-phone">A</td>
-											</tr>
-											<tr>
-												<td>Gecko</td>
-												<td>Netscape Navigator 9</td>
-												<td>Win 98+ / OSX.2+</td>
-												<td class="center hidden-phone">1.8</td>
-												<td class="center hidden-phone">A</td>
-											</tr>
-											<tr>
-												<td>Gecko</td>
-												<td>Mozilla 1.0</td>
-												<td>Win 95+ / OSX.1+</td>
-												<td class="center hidden-phone">1</td>
-												<td class="center hidden-phone">A</td>
-											</tr>
-											<tr>
-												<td>Gecko</td>
-												<td>Mozilla 1.1</td>
-												<td>Win 95+ / OSX.1+</td>
-												<td class="center hidden-phone">1.1</td>
-												<td class="center hidden-phone">A</td>
-											</tr>
-											<tr>
-												<td>Gecko</td>
-												<td>Mozilla 1.2</td>
-												<td>Win 95+ / OSX.1+</td>
-												<td class="center hidden-phone">1.2</td>
-												<td class="center hidden-phone">A</td>
-											</tr>
-											<tr>
-												<td>Gecko</td>
-												<td>Mozilla 1.3</td>
-												<td>Win 95+ / OSX.1+</td>
-												<td class="center hidden-phone">1.3</td>
-												<td class="center hidden-phone">A</td>
-											</tr>
-											<tr>
-												<td>Gecko</td>
-												<td>Mozilla 1.4</td>
-												<td>Win 95+ / OSX.1+</td>
-												<td class="center hidden-phone">1.4</td>
-												<td class="center hidden-phone">A</td>
-											</tr>
-											<tr>
-												<td>Gecko</td>
-												<td>Mozilla 1.5</td>
-												<td>Win 95+ / OSX.1+</td>
-												<td class="center hidden-phone">1.5</td>
-												<td class="center hidden-phone">A</td>
-											</tr>
-											<tr>
-												<td>Gecko</td>
-												<td>Mozilla 1.6</td>
-												<td>Win 95+ / OSX.1+</td>
-												<td class="center hidden-phone">1.6</td>
-												<td class="center hidden-phone">A</td>
-											</tr>
-											<tr>
-												<td>Gecko</td>
-												<td>Mozilla 1.7</td>
-												<td>Win 98+ / OSX.1+</td>
-												<td class="center hidden-phone">1.7</td>
-												<td class="center hidden-phone">A</td>
-											</tr>
-											<tr>
-												<td>Gecko</td>
-												<td>Mozilla 1.8</td>
-												<td>Win 98+ / OSX.1+</td>
-												<td class="center hidden-phone">1.8</td>
-												<td class="center hidden-phone">A</td>
-											</tr>
-											<tr>
-												<td>Gecko</td>
-												<td>Seamonkey 1.1</td>
-												<td>Win 98+ / OSX.2+</td>
-												<td class="center hidden-phone">1.8</td>
-												<td class="center hidden-phone">A</td>
-											</tr>
-											<tr>
-												<td>Gecko</td>
-												<td>Epiphany 2.20</td>
-												<td>Gnome</td>
-												<td class="center hidden-phone">1.8</td>
-												<td class="center hidden-phone">A</td>
-											</tr>
-											<tr>
-												<td>Webkit</td>
-												<td>Safari 1.2</td>
-												<td>OSX.3</td>
-												<td class="center hidden-phone">125.5</td>
-												<td class="center hidden-phone">A</td>
-											</tr>
-											<tr>
-												<td>Webkit</td>
-												<td>Safari 1.3</td>
-												<td>OSX.3</td>
-												<td class="center hidden-phone">312.8</td>
-												<td class="center hidden-phone">A</td>
-											</tr>
-											<tr>
-												<td>Webkit</td>
-												<td>Safari 2.0</td>
-												<td>OSX.4+</td>
-												<td class="center hidden-phone">419.3</td>
-												<td class="center hidden-phone">A</td>
-											</tr>
-											<tr>
-												<td>Webkit</td>
-												<td>Safari 3.0</td>
-												<td>OSX.4+</td>
-												<td class="center hidden-phone">522.1</td>
-												<td class="center hidden-phone">A</td>
-											</tr>
-											<tr>
-												<td>Webkit</td>
-												<td>OmniWeb 5.5</td>
-												<td>OSX.4+</td>
-												<td class="center hidden-phone">420</td>
-												<td class="center hidden-phone">A</td>
-											</tr>
-											<tr>
-												<td>Webkit</td>
-												<td>iPod Touch / iPhone</td>
-												<td>iPod</td>
-												<td class="center hidden-phone">420.1</td>
-												<td class="center hidden-phone">A</td>
-											</tr>
-											<tr>
-												<td>Webkit</td>
-												<td>S60</td>
-												<td>S60</td>
-												<td class="center hidden-phone">413</td>
-												<td class="center hidden-phone">A</td>
-											</tr>
-											<tr>
-												<td>Presto</td>
-												<td>Opera 7.0</td>
-												<td>Win 95+ / OSX.1+</td>
-												<td class="center hidden-phone">-</td>
-												<td class="center hidden-phone">A</td>
-											</tr>
-											<tr>
-												<td>Presto</td>
-												<td>Opera 7.5</td>
-												<td>Win 95+ / OSX.2+</td>
-												<td class="center hidden-phone">-</td>
-												<td class="center hidden-phone">A</td>
-											</tr>
-											<tr>
-												<td>Presto</td>
-												<td>Opera 8.0</td>
-												<td>Win 95+ / OSX.2+</td>
-												<td class="center hidden-phone">-</td>
-												<td class="center hidden-phone">A</td>
-											</tr>
-											<tr>
-												<td>Presto</td>
-												<td>Opera 8.5</td>
-												<td>Win 95+ / OSX.2+</td>
-												<td class="center hidden-phone">-</td>
-												<td class="center hidden-phone">A</td>
-											</tr>
-											<tr>
-												<td>Presto</td>
-												<td>Opera 9.0</td>
-												<td>Win 95+ / OSX.3+</td>
-												<td class="center hidden-phone">-</td>
-												<td class="center hidden-phone">A</td>
-											</tr>
-											<tr>
-												<td>Presto</td>
-												<td>Opera 9.2</td>
-												<td>Win 88+ / OSX.3+</td>
-												<td class="center hidden-phone">-</td>
-												<td class="center hidden-phone">A</td>
-											</tr>
-											<tr>
-												<td>Presto</td>
-												<td>Opera 9.5</td>
-												<td>Win 88+ / OSX.3+</td>
-												<td class="center hidden-phone">-</td>
-												<td class="center hidden-phone">A</td>
-											</tr>
-											<tr>
-												<td>Presto</td>
-												<td>Opera for Wii</td>
-												<td>Wii</td>
-												<td class="center hidden-phone">-</td>
-												<td class="center hidden-phone">A</td>
-											</tr>
-											<tr>
-												<td>Presto</td>
-												<td>Nokia N800</td>
-												<td>N800</td>
-												<td class="center hidden-phone">-</td>
-												<td class="center hidden-phone">A</td>
-											</tr>
-											<tr>
-												<td>Presto</td>
-												<td>Nintendo DS browser</td>
-												<td>Nintendo DS</td>
-												<td class="center hidden-phone">8.5</td>
-												<td class="center hidden-phone">C/A<sup>1</sup></td>
-											</tr>
-											<tr class="gradeC">
-												<td>KHTML</td>
-												<td>Konqureror 3.1</td>
-												<td>KDE 3.1</td>
-												<td class="center hidden-phone">3.1</td>
-												<td class="center hidden-phone">C</td>
-											</tr>
-											<tr>
-												<td>KHTML</td>
-												<td>Konqureror 3.3</td>
-												<td>KDE 3.3</td>
-												<td class="center hidden-phone">3.3</td>
-												<td class="center hidden-phone">A</td>
-											</tr>
-											<tr>
-												<td>KHTML</td>
-												<td>Konqureror 3.5</td>
-												<td>KDE 3.5</td>
-												<td class="center hidden-phone">3.5</td>
-												<td class="center hidden-phone">A</td>
-											</tr>
-											<tr class="gradeX">
-												<td>Tasman</td>
-												<td>Internet Explorer 4.5</td>
-												<td>Mac OS 8-9</td>
-												<td class="center hidden-phone">-</td>
-												<td class="center hidden-phone">X</td>
-											</tr>
-											<tr class="gradeC">
-												<td>Tasman</td>
-												<td>Internet Explorer 5.1</td>
-												<td>Mac OS 7.6-9</td>
-												<td class="center hidden-phone">1</td>
-												<td class="center hidden-phone">C</td>
-											</tr>
-											<tr class="gradeC">
-												<td>Tasman</td>
-												<td>Internet Explorer 5.2</td>
-												<td>Mac OS 8-X</td>
-												<td class="center hidden-phone">1</td>
-												<td class="center hidden-phone">C</td>
-											</tr>
-											<tr>
-												<td>Misc</td>
-												<td>NetFront 3.1</td>
-												<td>Embedded devices</td>
-												<td class="center hidden-phone">-</td>
-												<td class="center hidden-phone">C</td>
-											</tr>
-											<tr>
-												<td>Misc</td>
-												<td>NetFront 3.4</td>
-												<td>Embedded devices</td>
-												<td class="center hidden-phone">-</td>
-												<td class="center hidden-phone">A</td>
-											</tr>
-											<tr class="gradeX">
-												<td>Misc</td>
-												<td>Dillo 0.8</td>
-												<td>Embedded devices</td>
-												<td class="center hidden-phone">-</td>
-												<td class="center hidden-phone">X</td>
-											</tr>
-											<tr class="gradeX">
-												<td>Misc</td>
-												<td>Links</td>
-												<td>Text only</td>
-												<td class="center hidden-phone">-</td>
-												<td class="center hidden-phone">X</td>
-											</tr>
-											<tr class="gradeX">
-												<td>Misc</td>
-												<td>Lynx</td>
-												<td>Text only</td>
-												<td class="center hidden-phone">-</td>
-												<td class="center hidden-phone">X</td>
-											</tr>
-											<tr class="gradeC">
-												<td>Misc</td>
-												<td>IE Mobile</td>
-												<td>Windows Mobile 6</td>
-												<td class="center hidden-phone">-</td>
-												<td class="center hidden-phone">C</td>
-											</tr>
-											<tr class="gradeC">
-												<td>Misc</td>
-												<td>PSP browser</td>
-												<td>PSP</td>
-												<td class="center hidden-phone">-</td>
-												<td class="center hidden-phone">C</td>
-											</tr>
-											<tr class="gradeU">
-												<td>Other browsers</td>
-												<td>All others</td>
-												<td>-</td>
-												<td class="center hidden-phone">-</td>
-												<td class="center hidden-phone">U</td>
-											</tr>
-										</tbody>
+<html lang="zh">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-									</table>
-								</div>
-							</div>
-						</section>
-					</div>
-				</div>
-			</section>
-		</section>
-		<!--main content end-->
-		<jsp:include page="/jsp/footer.jsp" />
-	</section>
-	<jsp:include page="/jsp/commonjs.jsp" />
-	<!-- js placed at the end of the document so the pages load faster-->
-	<script>
+    <title>DataTables | Gentelella</title>
+
+    <!-- Bootstrap -->
+    <link href="${appServer}/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="${appServer}/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="${appServer}/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="${appServer}/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- Datatables -->
+    <link href="${appServer}/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="${appServer}/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="${appServer}/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="${appServer}/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <link href="${appServer}/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="${appServer}/css/custom.css" rel="stylesheet">
+  </head>
+
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+      	<jsp:include page="/jsp/left.jsp" />
+        <jsp:include page="/jsp/top.jsp" />
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="page-title">
+            <div class="clearfix"></div>
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_content">
+                    <table id="datatable-checkbox" class="table table-striped table-bordered jambo_table bulk_action ">
+                      <thead>
+                        <tr>
+                          <th>
+							 <input type="checkbox" class="flat check-all">
+						  </th>
+                          <th>Name</th>
+                          <th>Position</th>
+                          <th>Office</th>
+                          <th>Age</th>
+                          <th>Start date</th>
+                          <th>Salary</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Tiger Nixon</td>
+                          <td>System Architect</td>
+                          <td>Edinburgh</td>
+                          <td>61</td>
+                          <td>2011/04/25</td>
+                          <td>$320,800</td>
+                        </tr>
+                        <tr>
+                         <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Garrett Winters</td>
+                          <td>Accountant</td>
+                          <td>Tokyo</td>
+                          <td>63</td>
+                          <td>2011/07/25</td>
+                          <td>$170,750</td>
+                        </tr>
+                        <tr>
+							<td>
+								 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Ashton Cox</td>
+                          <td>Junior Technical Author</td>
+                          <td>San Francisco</td>
+                          <td>66</td>
+                          <td>2009/01/12</td>
+                          <td>$86,000</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Cedric Kelly</td>
+                          <td>Senior Javascript Developer</td>
+                          <td>Edinburgh</td>
+                          <td>22</td>
+                          <td>2012/03/29</td>
+                          <td>$433,060</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Airi Satou</td>
+                          <td>Accountant</td>
+                          <td>Tokyo</td>
+                          <td>33</td>
+                          <td>2008/11/28</td>
+                          <td>$162,700</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Brielle Williamson</td>
+                          <td>Integration Specialist</td>
+                          <td>New York</td>
+                          <td>61</td>
+                          <td>2012/12/02</td>
+                          <td>$372,000</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Herrod Chandler</td>
+                          <td>Sales Assistant</td>
+                          <td>San Francisco</td>
+                          <td>59</td>
+                          <td>2012/08/06</td>
+                          <td>$137,500</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Rhona Davidson</td>
+                          <td>Integration Specialist</td>
+                          <td>Tokyo</td>
+                          <td>55</td>
+                          <td>2010/10/14</td>
+                          <td>$327,900</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Colleen Hurst</td>
+                          <td>Javascript Developer</td>
+                          <td>San Francisco</td>
+                          <td>39</td>
+                          <td>2009/09/15</td>
+                          <td>$205,500</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Sonya Frost</td>
+                          <td>Software Engineer</td>
+                          <td>Edinburgh</td>
+                          <td>23</td>
+                          <td>2008/12/13</td>
+                          <td>$103,600</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Jena Gaines</td>
+                          <td>Office Manager</td>
+                          <td>London</td>
+                          <td>30</td>
+                          <td>2008/12/19</td>
+                          <td>$90,560</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Quinn Flynn</td>
+                          <td>Support Lead</td>
+                          <td>Edinburgh</td>
+                          <td>22</td>
+                          <td>2013/03/03</td>
+                          <td>$342,000</td>
+                        </tr>
+                        <tr>
+						  <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Charde Marshall</td>
+                          <td>Regional Director</td>
+                          <td>San Francisco</td>
+                          <td>36</td>
+                          <td>2008/10/16</td>
+                          <td>$470,600</td>
+                        </tr>
+                        <tr>
+						   <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Haley Kennedy</td>
+                          <td>Senior Marketing Designer</td>
+                          <td>London</td>
+                          <td>43</td>
+                          <td>2012/12/18</td>
+                          <td>$313,500</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Tatyana Fitzpatrick</td>
+                          <td>Regional Director</td>
+                          <td>London</td>
+                          <td>19</td>
+                          <td>2010/03/17</td>
+                          <td>$385,750</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Michael Silva</td>
+                          <td>Marketing Designer</td>
+                          <td>London</td>
+                          <td>66</td>
+                          <td>2012/11/27</td>
+                          <td>$198,500</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Paul Byrd</td>
+                          <td>Chief Financial Officer (CFO)</td>
+                          <td>New York</td>
+                          <td>64</td>
+                          <td>2010/06/09</td>
+                          <td>$725,000</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Gloria Little</td>
+                          <td>Systems Administrator</td>
+                          <td>New York</td>
+                          <td>59</td>
+                          <td>2009/04/10</td>
+                          <td>$237,500</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Bradley Greer</td>
+                          <td>Software Engineer</td>
+                          <td>London</td>
+                          <td>41</td>
+                          <td>2012/10/13</td>
+                          <td>$132,000</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Dai Rios</td>
+                          <td>Personnel Lead</td>
+                          <td>Edinburgh</td>
+                          <td>35</td>
+                          <td>2012/09/26</td>
+                          <td>$217,500</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Jenette Caldwell</td>
+                          <td>Development Lead</td>
+                          <td>New York</td>
+                          <td>30</td>
+                          <td>2011/09/03</td>
+                          <td>$345,000</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Yuri Berry</td>
+                          <td>Chief Marketing Officer (CMO)</td>
+                          <td>New York</td>
+                          <td>40</td>
+                          <td>2009/06/25</td>
+                          <td>$675,000</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Caesar Vance</td>
+                          <td>Pre-Sales Support</td>
+                          <td>New York</td>
+                          <td>21</td>
+                          <td>2011/12/12</td>
+                          <td>$106,450</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Doris Wilder</td>
+                          <td>Sales Assistant</td>
+                          <td>Sidney</td>
+                          <td>23</td>
+                          <td>2010/09/20</td>
+                          <td>$85,600</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Angelica Ramos</td>
+                          <td>Chief Executive Officer (CEO)</td>
+                          <td>London</td>
+                          <td>47</td>
+                          <td>2009/10/09</td>
+                          <td>$1,200,000</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Gavin Joyce</td>
+                          <td>Developer</td>
+                          <td>Edinburgh</td>
+                          <td>42</td>
+                          <td>2010/12/22</td>
+                          <td>$92,575</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Jennifer Chang</td>
+                          <td>Regional Director</td>
+                          <td>Singapore</td>
+                          <td>28</td>
+                          <td>2010/11/14</td>
+                          <td>$357,650</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Brenden Wagner</td>
+                          <td>Software Engineer</td>
+                          <td>San Francisco</td>
+                          <td>28</td>
+                          <td>2011/06/07</td>
+                          <td>$206,850</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Fiona Green</td>
+                          <td>Chief Operating Officer (COO)</td>
+                          <td>San Francisco</td>
+                          <td>48</td>
+                          <td>2010/03/11</td>
+                          <td>$850,000</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Shou Itou</td>
+                          <td>Regional Marketing</td>
+                          <td>Tokyo</td>
+                          <td>20</td>
+                          <td>2011/08/14</td>
+                          <td>$163,000</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Michelle House</td>
+                          <td>Integration Specialist</td>
+                          <td>Sidney</td>
+                          <td>37</td>
+                          <td>2011/06/02</td>
+                          <td>$95,400</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Suki Burks</td>
+                          <td>Developer</td>
+                          <td>London</td>
+                          <td>53</td>
+                          <td>2009/10/22</td>
+                          <td>$114,500</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Prescott Bartlett</td>
+                          <td>Technical Author</td>
+                          <td>London</td>
+                          <td>27</td>
+                          <td>2011/05/07</td>
+                          <td>$145,000</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Gavin Cortez</td>
+                          <td>Team Leader</td>
+                          <td>San Francisco</td>
+                          <td>22</td>
+                          <td>2008/10/26</td>
+                          <td>$235,500</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Martena Mccray</td>
+                          <td>Post-Sales support</td>
+                          <td>Edinburgh</td>
+                          <td>46</td>
+                          <td>2011/03/09</td>
+                          <td>$324,050</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Unity Butler</td>
+                          <td>Marketing Designer</td>
+                          <td>San Francisco</td>
+                          <td>47</td>
+                          <td>2009/12/09</td>
+                          <td>$85,675</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Howard Hatfield</td>
+                          <td>Office Manager</td>
+                          <td>San Francisco</td>
+                          <td>51</td>
+                          <td>2008/12/16</td>
+                          <td>$164,500</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Hope Fuentes</td>
+                          <td>Secretary</td>
+                          <td>San Francisco</td>
+                          <td>41</td>
+                          <td>2010/02/12</td>
+                          <td>$109,850</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Vivian Harrell</td>
+                          <td>Financial Controller</td>
+                          <td>San Francisco</td>
+                          <td>62</td>
+                          <td>2009/02/14</td>
+                          <td>$452,500</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Timothy Mooney</td>
+                          <td>Office Manager</td>
+                          <td>London</td>
+                          <td>37</td>
+                          <td>2008/12/11</td>
+                          <td>$136,200</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Jackson Bradshaw</td>
+                          <td>Director</td>
+                          <td>New York</td>
+                          <td>65</td>
+                          <td>2008/09/26</td>
+                          <td>$645,750</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Olivia Liang</td>
+                          <td>Support Engineer</td>
+                          <td>Singapore</td>
+                          <td>64</td>
+                          <td>2011/02/03</td>
+                          <td>$234,500</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Bruno Nash</td>
+                          <td>Software Engineer</td>
+                          <td>London</td>
+                          <td>38</td>
+                          <td>2011/05/03</td>
+                          <td>$163,500</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Sakura Yamamoto</td>
+                          <td>Support Engineer</td>
+                          <td>Tokyo</td>
+                          <td>37</td>
+                          <td>2009/08/19</td>
+                          <td>$139,575</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Thor Walton</td>
+                          <td>Developer</td>
+                          <td>New York</td>
+                          <td>61</td>
+                          <td>2013/08/11</td>
+                          <td>$98,540</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Finn Camacho</td>
+                          <td>Support Engineer</td>
+                          <td>San Francisco</td>
+                          <td>47</td>
+                          <td>2009/07/07</td>
+                          <td>$87,500</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Serge Baldwin</td>
+                          <td>Data Coordinator</td>
+                          <td>Singapore</td>
+                          <td>64</td>
+                          <td>2012/04/09</td>
+                          <td>$138,575</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Zenaida Frank</td>
+                          <td>Software Engineer</td>
+                          <td>New York</td>
+                          <td>63</td>
+                          <td>2010/01/04</td>
+                          <td>$125,250</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Zorita Serrano</td>
+                          <td>Software Engineer</td>
+                          <td>San Francisco</td>
+                          <td>56</td>
+                          <td>2012/06/01</td>
+                          <td>$115,000</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Jennifer Acosta</td>
+                          <td>Junior Javascript Developer</td>
+                          <td>Edinburgh</td>
+                          <td>43</td>
+                          <td>2013/02/01</td>
+                          <td>$75,650</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Cara Stevens</td>
+                          <td>Sales Assistant</td>
+                          <td>New York</td>
+                          <td>46</td>
+                          <td>2011/12/06</td>
+                          <td>$145,600</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Hermione Butler</td>
+                          <td>Regional Director</td>
+                          <td>London</td>
+                          <td>47</td>
+                          <td>2011/03/21</td>
+                          <td>$356,250</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Lael Greer</td>
+                          <td>Systems Administrator</td>
+                          <td>London</td>
+                          <td>21</td>
+                          <td>2009/02/27</td>
+                          <td>$103,500</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Jonas Alexander</td>
+                          <td>Developer</td>
+                          <td>San Francisco</td>
+                          <td>30</td>
+                          <td>2010/07/14</td>
+                          <td>$86,500</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Shad Decker</td>
+                          <td>Regional Director</td>
+                          <td>Edinburgh</td>
+                          <td>51</td>
+                          <td>2008/11/13</td>
+                          <td>$183,000</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Michael Bruce</td>
+                          <td>Javascript Developer</td>
+                          <td>Singapore</td>
+                          <td>29</td>
+                          <td>2011/06/27</td>
+                          <td>$183,000</td>
+                        </tr>
+                        <tr>
+                          <td>
+							 <input type="checkbox"  class="flat">
+						  </td>
+                          <td>Donna Snider</td>
+                          <td>Customer Support</td>
+                          <td>New York</td>
+                          <td>27</td>
+                          <td>2011/01/25</td>
+                          <td>$112,000</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+       </div>
+       <jsp:include page="/jsp/footer.jsp" />
+      </div>
+    </div>
+	
+	
+    <!-- jQuery -->
+    <script src="${appServer}/vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="${appServer}/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="${appServer}/vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="${appServer}/vendors/nprogress/nprogress.js"></script>
+    <!-- iCheck -->
+    <script src="${appServer}/vendors/iCheck/icheck.min.js"></script>
+    <!-- Datatables -->
+    <script src="${appServer}/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="${appServer}/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="${appServer}/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="${appServer}/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script src="${appServer}/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="${appServer}/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="${appServer}/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="${appServer}/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="${appServer}/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="${appServer}/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="${appServer}/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script src="${appServer}/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+    <script src="${appServer}/vendors/jszip/dist/jszip.min.js"></script>
+    <script src="${appServer}/vendors/pdfmake/build/pdfmake.min.js"></script>
+    <script src="${appServer}/vendors/pdfmake/build/vfs_fonts.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="${appServer}/js/custom.js"></script>
+	<script type="text/javascript">
 		$(document).ready(function() {
-			$('#dynamic-table').dataTable({
-				"bSort" : false,
-				"bLengthChange" : false,
-				"bFilter" : false
-			});
-		});
-	</script>
-</body>
-</html>
+			/* init_DataTables(); */
+			var $datatable = $('#datatable-checkbox');
 
+			$datatable.dataTable({
+			  'order': [[ 1, 'asc' ]],
+			  "lengthChange": false,
+			  "ordering": false,
+			  "pageLength": 20,
+			  'columnDefs': [
+				{ orderable: false, targets: [0] }
+			  ],
+			  "dom": "<'row'<'menutool col-xs-6'><'searchtool col-xs-6 text-right'>>lrtip",
+      		  initComplete: function () {
+      			$(".searchtool").append("<input type='text' id='first-name' placeholder='名称' class='form-control'>");
+      			$(".searchtool").append("<button id='datainit' type='button' class='btn btn-default'> 查询</button>");
+      			$(".menutool").append("<button id='datainit' type='button' class='btn btn-primary'><span class='fa fa-plus'></span> 新增</button>");
+      		  }
+			});
+			
+		//	$("div.toolbar").html("<button type='button' class='btn btn-primary fa fa-plus'> 新增</button>");
+			$datatable.on('draw.dt', function() {
+			  $('checkbox input').iCheck({
+				checkboxClass: 'icheckbox_flat-green'
+			  });
+			});
+		})
+		
+		function initData() {
+			alert();
+		}
+	</script>
+  </body>
+</html>
