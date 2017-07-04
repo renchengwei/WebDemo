@@ -8,10 +8,10 @@ import javax.annotation.Resource;
 
 import org.junit.Test;
 
-import com.rencw.bean.Permission;
-import com.rencw.bean.Role;
-import com.rencw.bean.User;
-import com.rencw.bean.UserRole;
+import com.rencw.pojo.Permission;
+import com.rencw.pojo.Role;
+import com.rencw.pojo.User;
+import com.rencw.pojo.UserRole;
 import com.rencw.service.UserService;
 
 public class TestUser extends TestSpringBase {
@@ -71,7 +71,7 @@ public class TestUser extends TestSpringBase {
 	
 	@Test
 	public void testSelectRoles() {
-		List<Role> list = userService.selectRoles("zhangsan");
+		List<Role> list = userService.findRolesByUserName("zhangsan");
 		if(list != null) {
 			for(Role role : list) {
 				System.out.println(role);
@@ -81,7 +81,7 @@ public class TestUser extends TestSpringBase {
 	
 	@Test
 	public void testSelectPermissions() {
-		List<Permission> list = userService.selectPermissions("zhangsan");
+		List<Permission> list = userService.findPermissionsByUserName("zhangsan");
 		if(list != null) {
 			for(Permission permission : list) {
 				System.out.println(permission);
@@ -90,7 +90,7 @@ public class TestUser extends TestSpringBase {
 	}
 	@Test
 	public void testFindPermissions() {
-		Set<String> list = userService.findPermissions("zhangsan");
+		Set<String> list = userService.selectPermissionsByUserName("zhangsan");
 		if(list != null) {
 			for(String permission : list) {
 				System.out.println(permission);
@@ -99,7 +99,7 @@ public class TestUser extends TestSpringBase {
 	}
 	@Test
 	public void testFindRoles() {
-		Set<String> list = userService.findRoles("zhangsan");
+		Set<String> list = userService.selectRolesByUserName("zhangsan");
 		if(list != null) {
 			for(String permission : list) {
 				System.out.println(permission);

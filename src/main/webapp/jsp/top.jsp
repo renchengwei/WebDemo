@@ -21,7 +21,7 @@
                 <li><a href="javascript:;"> 个人信息</a></li>
                 
                 <li><a href="javascript:;"> 修改密码</a></li>
-                <li><a href="logout.jsp"><i class="fa fa-sign-out pull-right"></i> 退出系统</a></li>
+                <li><a href="${appServer}/logout.jsp"><i class="fa fa-sign-out pull-right"></i> 退出系统</a></li>
               </ul>
             </li>
 

@@ -3,10 +3,10 @@ package com.rencw.service;
 import java.util.List;
 import java.util.Set;
 
-import com.rencw.bean.Permission;
-import com.rencw.bean.Role;
-import com.rencw.bean.User;
-import com.rencw.bean.UserRole;
+import com.rencw.pojo.Permission;
+import com.rencw.pojo.Role;
+import com.rencw.pojo.User;
+import com.rencw.pojo.UserRole;
 
 public interface UserService {
 
@@ -50,25 +50,26 @@ public interface UserService {
      * @param userName
      * @return
      */
-    public List<Role> selectRoles(String userName);
+    public List<Role> findRolesByUserName(String userName);
+    
+    /**
+     * 根据用户名查找其权限对象
+     * @param userName
+     * @return
+     */
+    public List<Permission> findPermissionsByUserName(String userName);
+    /**
+     * 根据用户名查找其权限对象
+     * @param userName
+     * @return
+     */
+    public Set<String> selectPermissionsByUserName(String userName);
     
     /**
      * 根据用户名查找其角色
      * @param userName
      * @return
      */
-    public Set<String> findRoles(String userName);
+    public Set<String> selectRolesByUserName(String userName);
 
-    /**
-     * 根据用户名查找其权限对象
-     * @param userName
-     * @return
-     */
-    public List<Permission> selectPermissions(String userName);
-    /**
-     * 根据用户名查找其权限对象
-     * @param userName
-     * @return
-     */
-    public Set<String> findPermissions(String userName);
 }

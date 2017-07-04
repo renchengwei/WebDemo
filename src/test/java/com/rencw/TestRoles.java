@@ -7,8 +7,8 @@ import javax.annotation.Resource;
 
 import org.junit.Test;
 
-import com.rencw.bean.Role;
-import com.rencw.bean.RolePermission;
+import com.rencw.pojo.Role;
+import com.rencw.pojo.RolePermission;
 import com.rencw.service.RoleService;
 
 public class TestRoles extends TestSpringBase {

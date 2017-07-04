@@ -1,15 +1,24 @@
 package com.rencw.dao.mapper;
 
-import java.util.List;
-import java.util.Set;
-
 import org.springframework.stereotype.Repository;
 
-import com.rencw.bean.Permission;
-import com.rencw.bean.Role;
-import com.rencw.bean.User;
-import com.rencw.bean.UserRole;
+import com.rencw.pojo.User;
+import com.rencw.pojo.UserRole;
 
+/**  
+ * @ClassName: UserMapper  
+ * @Description: 用户DAO，
+ * @author renchengwei  
+ * @date 2017年6月17日  
+ *    
+ */
+/**  
+ * @ClassName: UserMapper  
+ * @Description: 定义用户相关的数据库层操作
+ * @author renchengwei  
+ * @date 2017年6月17日  
+ *    
+ */
 @Repository
 public interface UserMapper {
 
@@ -53,32 +62,5 @@ public interface UserMapper {
      * @return
      */
     public User findByUserName(String userName);
-
-    /**
-     * 根据用户名查找其角色
-     * @param userName
-     * @return
-     */
-    public List<Role> selectRoles(String userName);
-
-    /**
-     * 根据用户名查找其权限
-     * @param userName
-     * @return
-     */
-    public List<Permission> selectPermissions(String userName);
     
-    /**
-     * 根据用户名查找其角色
-     * @param userName
-     * @return
-     */
-    public Set<String> findRoles(String userName);
-    
-    /**
-     * 根据用户名查找其权限对象
-     * @param userName
-     * @return
-     */
-    public Set<String> findPermissions(String userName);
 }

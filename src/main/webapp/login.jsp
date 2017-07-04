@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
   <head>
   	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
@@ -33,7 +33,7 @@
         <div class="animate form login_form">
           <section class="login_content">
             <form method="post" action="/WebDemo/login.jsp">
-              <h1>Login Form</h1>
+              <h1>系统登陆</h1>
               <div>
                 <input type="text" class="form-control" placeholder="userName" name="userName" required="" />
               </div>
@@ -41,23 +41,23 @@
                 <input type="password" class="form-control" placeholder="password" name="password" required="" />
               </div>
               <div>
-              	<button class="btn btn-default submit" type="submit">Log in</button>
+              	<button class="btn btn-default submit" type="submit">登陆</button>
 <!--                 <a class="btn btn-default submit">Log in</a> -->
-                <a class="reset_pass" href="#">Lost your password?</a>
+                <a class="reset_pass" href="#">忘记密码?</a>
               </div>
 
               <div class="clearfix"></div>
 
               <div class="separator">
-                <p class="change_link">New to site?
-                  <a href="#signup" class="to_register"> Create Account </a>
-                </p>
+<!--                 <p class="change_link">New to site? -->
+<!--                   <a href="#signup" class="to_register"> Create Account </a> -->
+<!--                 </p> -->
 
                 <div class="clearfix"></div>
                 <br />
 
                 <div>
-                  <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
+<!--                   <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1> -->
                   <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
                 </div>
               </div>

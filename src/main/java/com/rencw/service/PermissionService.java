@@ -1,8 +1,8 @@
 package com.rencw.service;
 
-import com.rencw.bean.Permission;
+import com.rencw.pojo.Permission;
 
 public interface PermissionService {
-	public Permission createPermission(Permission permission);
+	public Permission addPermission(Permission permission);
     public void deletePermission(Long permissionId);
 }

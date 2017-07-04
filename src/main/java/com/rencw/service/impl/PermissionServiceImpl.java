@@ -4,8 +4,8 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.rencw.bean.Permission;
 import com.rencw.dao.mapper.PermissionMapper;
+import com.rencw.pojo.Permission;
 import com.rencw.service.PermissionService;
 
 @Service
@@ -15,8 +15,8 @@ public class PermissionServiceImpl implements PermissionService {
 	private PermissionMapper permissionMapper;
 	
 	@Override
-	public Permission createPermission(Permission permission) {
-		permissionMapper.createPermission(permission);
+	public Permission addPermission(Permission permission) {
+		permissionMapper.addPermission(permission);
 		return permission;
 	}
 

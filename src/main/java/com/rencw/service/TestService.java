@@ -2,7 +2,7 @@ package com.rencw.service;
 
 import java.util.List;
 
-import com.rencw.bean.TestBean;
+import com.rencw.pojo.TestBean;
 
 public interface TestService {
 	public void test();

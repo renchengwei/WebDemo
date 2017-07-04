@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.rencw.bean.TestBean;
+import com.rencw.pojo.TestBean;
 
 @Repository
 public interface TestMapper {

@@ -1,10 +1,20 @@
 package com.rencw.dao.mapper;
 
+import java.util.List;
+import java.util.Set;
+
 import org.springframework.stereotype.Repository;
 
-import com.rencw.bean.Role;
-import com.rencw.bean.RolePermission;
+import com.rencw.pojo.Role;
+import com.rencw.pojo.RolePermission;
 
+/**  
+ * @ClassName: RoleMapper  
+ * @Description: 定义角色相关的数据库层操作
+ * @author renchengwei  
+ * @date 2017年6月17日  
+ *    
+ */
 @Repository
 public interface RoleMapper {
 
@@ -28,4 +38,17 @@ public interface RoleMapper {
 	 */
 	public void uncorrelationPermissions(RolePermission rolePermission);
 
+	/**
+     * 根据用户名查找其角色
+     * @param userName
+     * @return
+     */
+    public List<Role> findRolesByUserName(String userName);
+
+    /**
+     * 根据用户名查找其角色
+     * @param userName
+     * @return
+     */
+    public Set<String> selectRolesByUserName(String userName);
 }

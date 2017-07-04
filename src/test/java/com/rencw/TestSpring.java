@@ -10,7 +10,7 @@ import org.apache.shiro.web.servlet.ShiroHttpServletRequest;
 import org.junit.Test;
 
 import com.rencw.action.TestAction;
-import com.rencw.bean.TestBean;
+import com.rencw.pojo.TestBean;
 import com.rencw.service.TestService;
 
 public class TestSpring  extends TestSpringBase {

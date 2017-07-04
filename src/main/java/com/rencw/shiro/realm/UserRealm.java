@@ -15,7 +15,7 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 
-import com.rencw.bean.User;
+import com.rencw.pojo.User;
 import com.rencw.service.UserService;
 import com.rencw.shiro.SimpleByteSource;
 
@@ -32,8 +32,8 @@ public class UserRealm extends AuthorizingRealm implements Serializable {
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 		String userName = (String) principals.getPrimaryPrincipal();
 		SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-        authorizationInfo.setRoles(userService.findRoles(userName));
-        authorizationInfo.setStringPermissions(userService.findPermissions(userName));
+        authorizationInfo.setRoles(userService.selectRolesByUserName(userName));
+        authorizationInfo.setStringPermissions(userService.selectPermissionsByUserName(userName));
         return authorizationInfo;
 	}
 

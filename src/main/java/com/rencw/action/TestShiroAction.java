@@ -7,7 +7,7 @@ import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 
-import com.rencw.bean.User;
+import com.rencw.pojo.User;
 
 @Controller
 public class TestShiroAction {

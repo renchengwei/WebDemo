@@ -10,32 +10,18 @@
 		<result column="password" property="password"/>
 		<result column="password_salt" property="passwordSalt"/>
 		<result column="locked" property="locked"/>
+		<result column="is_delete" property="isDelete"/>
 		<result column="gmt_create" property="gmtCreate"/>
 		<result column="gmt_modify" property="gmtModify"/>
 	</resultMap>
 	
-	<resultMap type="role" id="roleResultMap">
-		<id column="id" property="id"/>
-		<result column="role" property="role"/>
-		<result column="available" property="available"/>
-		<result column="description" property="description"/>
-		<result column="gmt_create" property="gmtCreate"/>
-		<result column="gmt_modify" property="gmtModify"/>
-	</resultMap>
-	
-	<resultMap type="permission" id="permissionResultMap">
-		<id column="id" property="id"/>
-		<result column="permission" property="permission"/>
-		<result column="available" property="available"/>
-		<result column="description" property="description"/>
-		<result column="gmt_create" property="gmtCreate"/>
-		<result column="gmt_modify" property="gmtModify"/>
-	</resultMap>
-	
+	<sql id="userColunms">
+		id,user_name,password,password_salt,locked,is_delete,gmt_create,gmt_modify
+	</sql>
 	
 	<insert id="createUser" parameterType="user" keyProperty="id" useGeneratedKeys="true">
-		insert into users (user_name,password,password_salt,locked,gmt_create,gmt_modify) 
-		values(#{userName},#{password},#{passwordSalt},#{locked},sysdate(),sysdate());
+		insert into users (user_name,password,password_salt,locked,is_delete,gmt_create,gmt_modify) 
+		values(#{userName},#{password},#{passwordSalt},#{locked},#{isDelete},sysdate(),sysdate());
 	</insert>
 	
 	<update id="changePassword">
@@ -51,44 +37,14 @@
 	</delete>
 	
 	<select id="findByUserName" resultMap="userResultMap"> 
-		select * from users where user_name=#{userName}
+		select 
+		<include refid="userColunms"></include>
+		 from users where user_name=#{userName}
 	</select>
 	
 	<select id="findById" resultMap="userResultMap"> 
-		select * from users where id=#{id}
-	</select>
-	
-	<select id="selectRoles" resultMap="roleResultMap">
-		select * from roles where id in (
-			select role_id from users_roles where user_id in (
-				select id from users where user_name=#{0}
-			) 
-		)
-	</select>
-	
-	<select id="selectPermissions" resultMap="permissionResultMap">
-		select * from permissions where id in (
-			select permission_id from roles_permissions where role_id in (
-				select role_id from users_roles where user_id in (
-					select id from users where user_name=#{0}
-				)
-			)
-		)
-	</select>
-	<select id="findRoles" resultType="String">
-		select role from roles where id in (
-			select role_id from users_roles where user_id in (
-				select id from users where user_name=#{0}
-			) 
-		)
-	</select>
-	<select id="findPermissions" resultType="String">
-		select permission from permissions where id in (
-			select permission_id from roles_permissions where role_id in (
-				select role_id from users_roles where user_id in (
-					select id from users where user_name=#{0}
-				)
-			)
-		)
+		select 
+		<include refid="userColunms"></include>
+		 from users where id=#{id}
 	</select>
 </mapper>

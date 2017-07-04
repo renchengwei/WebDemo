@@ -2,8 +2,8 @@ package com.rencw.service;
 
 import java.util.List;
 
-import com.rencw.bean.Role;
-import com.rencw.bean.RolePermission;
+import com.rencw.pojo.Role;
+import com.rencw.pojo.RolePermission;
 
 public interface RoleService {
 	public Role createRole(Role role);

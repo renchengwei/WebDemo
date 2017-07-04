@@ -16,16 +16,16 @@
            <div class="menu_section">
              <ul class="nav side-menu">
                <li><a href="${appServer}/index.html"><i class="fa fa-home"></i> 首页</a></li>
-               <li><a><i class="fa fa-edit"></i> 用户管理 <span class="fa fa-chevron-down"></span></a>
+               <li><a><i class="fa fa-edit"></i> 系统用户 <span class="fa fa-chevron-down"></span></a>
                  <ul class="nav child_menu">
                    <li><a href="form.html">人员管理</a></li>
                    <li><a href="form_advanced.html">个人信息</a></li>
                    <li><a href="form_validation.html">修改密码</a></li>
                  </ul>
                </li>
-               <li><a><i class="fa fa-desktop"></i> 权限管理 <span class="fa fa-chevron-down"></span></a>
+               <li><a><i class="fa fa-desktop"></i> 权限角色 <span class="fa fa-chevron-down"></span></a>
                  <ul class="nav child_menu">
-                   <li><a href="${appServer}/jsp/authority/menulist.jsp">菜单管理</a></li>
+                   <li><a href="${appServer}/jsp/authority/permissionList.jsp">权限管理</a></li>
                    <li><a href="media_gallery.html">角色管理</a></li>
                  </ul>
                </li>

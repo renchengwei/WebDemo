@@ -6,20 +6,51 @@
 
 	<resultMap type="permission" id="permissionResultMap">
 		<id column="id" property="id"/>
-		<result column="permission" property="permission"/>
+		<result column="name" property="name"/>
+		<result column="type" property="type"/>
+		<result column="parent_id" property="parentId"/>
+		<result column="menu_url" property="menuURL"/>
+		<result column="order_no" property="orderNo"/>
+		<result column="code" property="code"/>
+		<result column="icon" property="icon"/>
 		<result column="available" property="available"/>
-		<result column="description" property="description"/>
+		<result column="is_delete" property="isDelete"/>
 		<result column="gmt_create" property="gmtCreate"/>
 		<result column="gmt_modify" property="gmtModify"/>
 	</resultMap>
 	
-	<insert id="createPermission" parameterType="permission" keyProperty="id" useGeneratedKeys="true">
-		insert into permissions (permission,available,description,gmt_create,gmt_modify) 
-		values(#{permission},#{available},#{description},sysdate(),sysdate());
+	<sql id="permissionColumns">
+		id,name,type,parent_id,menu_url,order_no,code,icon,available,is_delete,gmt_create,gmt_modify
+	</sql>
+	
+	<insert id="addPermission" parameterType="permission" keyProperty="id" useGeneratedKeys="true">
+		insert into permissions (name,type,parent_id,menu_url,order_no,code,icon,available,is_delete,gmt_create,gmt_modify) 
+		values(#{name},#{type},#{parentId},#{menuURL},#{orderNo},#{code},#{icon},#{available},#{isDelete},sysdate(),sysdate());
 	</insert>
 	
 	<delete id="deletePermission">
 		delete from permissions where id = #{id}
 	</delete>
 	
+	<select id="selectPermissionsByUserName" resultType="String">
+		select code from permissions where id in (
+			select permission_id from roles_permissions where role_id in (
+				select role_id from users_roles where user_id in (
+					select id from users where user_name=#{0}
+				)
+			)
+		)
+	</select>
+	
+	<select id="queryPermissionsByUserName" resultMap="permissionResultMap">
+		select 
+		<include refid="permissionColumns"></include>
+		 from permissions where id in (
+			select permission_id from roles_permissions where role_id in (
+				select role_id from users_roles where user_id in (
+					select id from users where user_name=#{0}
+				)
+			)
+		)
+	</select>
 </mapper>

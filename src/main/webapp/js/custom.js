@@ -247,8 +247,7 @@ $('table input.check-all').on('ifUnchecked', function () {
 	}
 });
 
-
-//var checkState = '';
+// var checkState = '';
 //
 //function countChecked() {
 //    if (checkState === 'all') {
@@ -954,47 +953,34 @@ if (typeof NProgress != 'undefined') {
 			
 		function init_parsley() {
 			
-			if( typeof (parsley) === 'undefined'){ return; }
-			console.log('init_parsley');
-			
-			$/*.listen*/('parsley:field:validate', function() {
-			  validateFront();
-			});
-			$('#demo-form .btn').on('click', function() {
-			  $('#demo-form').parsley().validate();
-			  validateFront();
-			});
-			var validateFront = function() {
-			  if (true === $('#demo-form').parsley().isValid()) {
-				$('.bs-callout-info').removeClass('hidden');
-				$('.bs-callout-warning').addClass('hidden');
-			  } else {
-				$('.bs-callout-info').addClass('hidden');
-				$('.bs-callout-warning').removeClass('hidden');
-			  }
-			};
-		  
-			$/*.listen*/('parsley:field:validate', function() {
-			  validateFront();
-			});
-			$('#demo-form2 .btn').on('click', function() {
-			  $('#demo-form2').parsley().validate();
-			  validateFront();
-			});
-			var validateFront = function() {
-			  if (true === $('#demo-form2').parsley().isValid()) {
-				$('.bs-callout-info').removeClass('hidden');
-				$('.bs-callout-warning').addClass('hidden');
-			  } else {
-				$('.bs-callout-info').addClass('hidden');
-				$('.bs-callout-warning').removeClass('hidden');
-			  }
-			};
-			
-			  try {
-				hljs.initHighlightingOnLoad();
-			  } catch (err) {}
-			
+//			if( typeof (parsley) === 'undefined'){ return; }
+//			console.log('init_parsley');
+//			
+//			$/*.listen*/('parsley:field:validate', function() {
+//			  validateFront();
+//			});
+//			$('#demo-form .btn').on('click', function() {
+//			  $('#demo-form').parsley().validate();
+//			  validateFront();
+//			});
+//			var validateFront = function() {
+//			  if (true === $('#demo-form').parsley().isValid()) {
+//				$('.bs-callout-info').removeClass('hidden');
+//				$('.bs-callout-warning').addClass('hidden');
+//			  } else {
+//				$('.bs-callout-info').addClass('hidden');
+//				$('.bs-callout-warning').removeClass('hidden');
+//			  }
+//			};
+//		  
+//			$/*.listen*/('parsley:field:validate', function() {
+//			  validateFront();
+//			});
+//			
+//			  try {
+//				hljs.initHighlightingOnLoad();
+//			  } catch (err) {}
+//			
 		};
 	   
 		
@@ -2504,7 +2490,40 @@ if (typeof NProgress != 'undefined') {
 		/* DATA TABLES */
 			
 		function init_DataTables() {
+			console.log('run_datatables');
 			
+			if( typeof ($.fn.DataTable) === 'undefined'){ return; }
+			console.log('init_DataTables');
+			$.extend( $.fn.dataTable.defaults.oLanguage, {
+				"sProcessing": "处理中...",
+		        "sLengthMenu": "显示 _MENU_ 项结果",
+		        "sZeroRecords": "没有匹配结果",
+		        "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+		        "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+		        "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+		        "sInfoPostFix": "",
+		        "sSearch": "搜索:",
+		        "sUrl": "",
+		        "sEmptyTable": "表中数据为空",
+		        "sLoadingRecords": "载入中...",
+		        "sInfoThousands": ",",
+		        "oPaginate": {
+		            "sFirst": "首页",
+		            "sPrevious": "上页",
+		            "sNext": "下页",
+		            "sLast": "末页"
+		        },
+		        "oAria": {
+		            "sSortAscending": ": 以升序排列此列",
+		            "sSortDescending": ": 以降序排列此列"
+		        }
+		    } );
+			
+			$(".table").on('draw.dt', function() {
+				$('checkbox input').iCheck({
+					checkboxClass : 'icheckbox_flat-green'
+				});
+			});
 		};
 	   
 			/* CHART - MORRIS  */
@@ -4970,7 +4989,7 @@ if (typeof NProgress != 'undefined') {
 		init_skycons();
 		init_select2();
 		init_validator();
-//		init_DataTables();
+		init_DataTables();
 		init_chart_doughnut();
 		init_gauge();
 		init_PNotify();
@@ -4980,32 +4999,6 @@ if (typeof NProgress != 'undefined') {
 		init_CustomNotification();
 		init_autosize();
 		init_autocomplete();
-		
-		$.extend( $.fn.dataTable.defaults.oLanguage, {
-			"sProcessing": "处理中...",
-	        "sLengthMenu": "显示 _MENU_ 项结果",
-	        "sZeroRecords": "没有匹配结果",
-	        "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
-	        "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
-	        "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
-	        "sInfoPostFix": "",
-	        "sSearch": "搜索:",
-	        "sUrl": "",
-	        "sEmptyTable": "表中数据为空",
-	        "sLoadingRecords": "载入中...",
-	        "sInfoThousands": ",",
-	        "oPaginate": {
-	            "sFirst": "首页",
-	            "sPrevious": "上页",
-	            "sNext": "下页",
-	            "sLast": "末页"
-	        },
-	        "oAria": {
-	            "sSortAscending": ": 以升序排列此列",
-	            "sSortDescending": ": 以降序排列此列"
-	        }
-	    } );
-				
 	});	
 	
 

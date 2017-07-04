@@ -7,9 +7,9 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.rencw.bean.TestBean;
 import com.rencw.dao.TestDao;
 import com.rencw.dao.mapper.TestMapper;
+import com.rencw.pojo.TestBean;
 import com.rencw.service.TestService;
 
 @Service

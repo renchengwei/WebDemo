@@ -7,11 +7,13 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.rencw.bean.Permission;
-import com.rencw.bean.Role;
-import com.rencw.bean.User;
-import com.rencw.bean.UserRole;
+import com.rencw.dao.mapper.PermissionMapper;
+import com.rencw.dao.mapper.RoleMapper;
 import com.rencw.dao.mapper.UserMapper;
+import com.rencw.pojo.Permission;
+import com.rencw.pojo.Role;
+import com.rencw.pojo.User;
+import com.rencw.pojo.UserRole;
 import com.rencw.service.UserService;
 import com.rencw.shiro.PasswordHelper;
 
@@ -20,6 +22,10 @@ public class UserServiceImpl implements UserService {
 
 	@Resource
 	private UserMapper userMapper;
+	@Resource
+	private PermissionMapper permissionMapper;
+	@Resource
+	private RoleMapper roleMapper;
 	@Resource
 	private PasswordHelper passwordHelper;
 	
@@ -62,23 +68,23 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<Role> selectRoles(String userName) {
-		return userMapper.selectRoles(userName);
+	public List<Role> findRolesByUserName(String userName) {
+		return roleMapper.findRolesByUserName(userName);
 	}
 
 	@Override
-	public List<Permission> selectPermissions(String userName) {
-		return userMapper.selectPermissions(userName);
+	public List<Permission> findPermissionsByUserName(String userName) {
+		return permissionMapper.queryPermissionsByUserName(userName);
 	}
 
 	@Override
-	public Set<String> findRoles(String userName) {
-		return userMapper.findRoles(userName);
+	public Set<String> selectRolesByUserName(String userName) {
+		return roleMapper.selectRolesByUserName(userName);
 	}
 
 	@Override
-	public Set<String> findPermissions(String userName) {
-		return userMapper.findPermissions(userName);
+	public Set<String> selectPermissionsByUserName(String userName) {
+		return permissionMapper.selectPermissionsByUserName(userName);
 	}
 
 }

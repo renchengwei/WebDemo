@@ -1231,6 +1231,13 @@ td span {
     line-height: 90px;
     margin: 20px 0
 }
+
+.success-tag {
+    font-size: 70px;
+    line-height: 90px;
+    margin: 20px 0
+}
+
 .col-middle {
     margin-top: 5%
 }

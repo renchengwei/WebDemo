@@ -7,7 +7,7 @@ import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.rencw.bean.User;
+import com.rencw.pojo.User;
 
 @Service
 public class PasswordHelper {
