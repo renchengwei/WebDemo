@@ -21,7 +21,7 @@ public class Role extends BaseBean {
     private String name; //角色标识 程序中判断使用,如"admin"
     private String description; //角色描述,UI界面显示使用
     private Boolean available = Boolean.FALSE; //是否可用,如果不可用将不会添加给用户
-    private Boolean isDelete = Boolean.FALSE; //是否删除
+    private Boolean isDeleted = Boolean.FALSE; //是否删除
     private Date gmtCreate;
     private Date gmtModify;
     
@@ -85,12 +85,12 @@ public class Role extends BaseBean {
 		this.gmtModify = gmtModify;
 	}
 
-	public Boolean getIsDelete() {
-		return isDelete;
+	public Boolean getIsDeleted() {
+		return isDeleted;
 	}
 
-	public void setIsDelete(Boolean isDelete) {
-		this.isDelete = isDelete;
+	public void setIsDeleted(Boolean isDeleted) {
+		this.isDeleted = isDeleted;
 	}
 	
 }

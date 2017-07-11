@@ -32,15 +32,15 @@
 			</array>
 		</property>
 	</bean>
-	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
-        <property name="exceptionMappings">
-            <props>
-                <!--授权-->
-                <prop key="org.apache.shiro.authz.UnauthorizedException">
-                    redirect:/error
-                </prop>
-            </props>
-        </property>
-        <property name="defaultErrorView" value="error/genericView"/>
-    </bean>
+<!-- 	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver"> -->
+<!--         <property name="exceptionMappings"> -->
+<!--             <props> -->
+<!--                 授权 -->
+<!--                 <prop key="org.apache.shiro.authz.UnauthorizedException"> -->
+<!--                     redirect:/error -->
+<!--                 </prop> -->
+<!--             </props> -->
+<!--         </property> -->
+<!--         <property name="defaultErrorView" value="error/genericView"/> -->
+<!--     </bean> -->
 </beans>

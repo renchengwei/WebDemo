@@ -14,7 +14,7 @@ public class TestPermission extends TestSpringBase {
 	
 	@Test
 	public void testCreatePermission() {
-		Permission permission = new Permission("user_create", "user_create", Boolean.TRUE);
+		Permission permission = new Permission("user_create", "user_create", "1");
 		permissionService.addPermission(permission);
 	}
 	@Test

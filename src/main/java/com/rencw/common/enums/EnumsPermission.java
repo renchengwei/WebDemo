@@ -9,7 +9,8 @@ package com.rencw.common.enums;
  */
 public enum EnumsPermission {
 
-	ADD_SUCCES("权限新增成功！",0),
+	ADD_SUCCES("新增权限成功！",0),
+	EDIT_SUCCES("编辑权限成功！",1),
 	ERROR_NAME_NULL("权限名称不能为空！",-1),
 	ERROR_URL_NULL("菜单URL不能为空！",-2),
 	ERROR_ORDERNO_NULL("排序号不能为空！",-3),

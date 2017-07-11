@@ -9,18 +9,18 @@
 		<result column="name" property="name"/>
 		<result column="available" property="available"/>
 		<result column="description" property="description"/>
-		<result column="is_delete" property="isDelete"/>
+		<result column="is_deleted" property="isDeleted"/>
 		<result column="gmt_create" property="gmtCreate"/>
 		<result column="gmt_modify" property="gmtModify"/>
 	</resultMap>
 	
 	<sql id="roleColunms">
-		id,name,available,description,is_delete,gmt_create,gmt_modify
+		id,name,available,description,is_deleted,gmt_create,gmt_modify
 	</sql>
 	
 	<insert id="createRole" parameterType="role" keyProperty="id" useGeneratedKeys="true">
-		insert into roles (name,available,description,is_delete,gmt_create,gmt_modify) 
-		values(#{name},#{available},#{description},#{isDelete},sysdate(),sysdate());
+		insert into roles (name,available,description,is_deleted,gmt_create,gmt_modify) 
+		values(#{name},#{available},#{description},#{isDeleted},sysdate(),sysdate());
 	</insert>
 	
 	<delete id="deleteRole">

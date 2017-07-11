@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="zh">
   <head>
@@ -52,9 +53,11 @@
                           <th>权限名称</th>
                           <th>授权标识</th>
                           <th>权限类型</th>
+                          <th>图标</th>
                           <th>是否可用</th>
                           <th>排序号</th>
                           <th>操作</th>
+                          <th></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -77,6 +80,7 @@
     <script src="${appServer}/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- iCheck -->
     <script src="${appServer}/vendors/iCheck/icheck.min.js"></script>
+    <script src="${appServer}/vendors/bootbox/bootbox.min.js"></script>
     <!-- Datatables -->
     <script src="${appServer}/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="${appServer}/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
@@ -86,59 +90,9 @@
 
     <!-- Custom Theme Scripts -->
     <script src="${appServer}/js/custom.js"></script>
+    <script src="${appServer}/js/permissionList.js"></script>
 	<script type="text/javascript">
-		$(document).ready(function() {
-			/* init_DataTables(); */
-			var $datatable = $('#datatable-checkbox');
-
-			$datatable.dataTable({
-			  "serverSide": true,
-			  "ajax":"${appServer}/permission/findPermissions.json",
-			  "order": [[ 1, 'asc' ]],
-			  "lengthChange": false,
-			  "ordering": false,
-			  "pageLength": 20,
-			  "columns": [
-				{ "data": "id"},
-				{ "data": "name"},
-				{ "data": "code"},
-				{ "data": "code"},
-				{ "data": "code"},
-				{ "data": "code"},
-				{ "data": "code"}
-			  ],
-			  "columnDefs":[
-				  { "targets": 0,
-				    "data": "id",
-				    "render": function ( data, type, full, meta ) {
-				      return '<input type="checkbox"  class="flat">';
-				    }
-				  },
-				  { "targets": 6,
-					    "data": "id",
-					    "render": function ( data, type, full, meta ) {
-					      return '<input type="checkbox"  class="flat">';
-					    }
-					  }
-			  ],
-			  "dom": "<'row'<'menutool col-xs-6'><'searchtool col-xs-6 text-right'>>lrtip",
-      		  initComplete: function () {
-      			$(".searchtool").append("<input type='text' id='first-name' placeholder='名称' class='form-control'>");
-      			$(".searchtool").append("<button id='datainit' type='button' class='btn btn-default'> 查询</button>");
-      			$(".menutool").append("<button id='add' type='button' class='btn btn-primary'><span class='fa fa-plus'></span> 新增</button>");
-      		 	$("#add").click(addmenu);
-      		 	$('input.flat').iCheck({
-                    checkboxClass: 'icheckbox_flat-green',
-                    radioClass: 'iradio_flat-green'
-                });
-      		  }
-			});
-		})
-		
-		//新增菜单
-		function addmenu() {
-			window.location= "${appServer}" + "/permission/toAddPermission.html";
-		}
+		var appServer = "${appServer}";
 	</script>
   </body>
 </html>

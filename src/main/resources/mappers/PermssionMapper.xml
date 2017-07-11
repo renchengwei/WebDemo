@@ -3,7 +3,6 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rencw.dao.mapper.PermissionMapper">
-
 	<resultMap type="permission" id="permissionResultMap">
 		<id column="id" property="id"/>
 		<result column="name" property="name"/>
@@ -14,22 +13,64 @@
 		<result column="code" property="code"/>
 		<result column="icon" property="icon"/>
 		<result column="available" property="available"/>
-		<result column="is_delete" property="isDelete"/>
+		<result column="is_deleted" property="isDeleted"/>
+		<result column="gmt_create" property="gmtCreate"/>
+		<result column="gmt_modify" property="gmtModify"/>
+		<result column="children_count" property="childrenCount"/>
+	</resultMap>
+	<resultMap type="permission" id="permissionResultMap1">
+		<id column="id" property="id"/>
+		<result column="name" property="name"/>
+		<result column="type" property="type"/>
+		<result column="parent_id" property="parentId"/>
+		<result column="menu_url" property="menuURL"/>
+		<result column="order_no" property="orderNo"/>
+		<result column="code" property="code"/>
+		<result column="icon" property="icon"/>
+		<result column="available" property="available"/>
+		<result column="is_deleted" property="isDeleted"/>
 		<result column="gmt_create" property="gmtCreate"/>
 		<result column="gmt_modify" property="gmtModify"/>
 	</resultMap>
 	
 	<sql id="permissionColumns">
-		id,name,type,parent_id,menu_url,order_no,code,icon,available,is_delete,gmt_create,gmt_modify
+		id,name,type,parent_id,menu_url,order_no,code,icon,available,is_deleted,gmt_create,gmt_modify
 	</sql>
 	
 	<insert id="addPermission" parameterType="permission" keyProperty="id" useGeneratedKeys="true">
-		insert into permissions (name,type,parent_id,menu_url,order_no,code,icon,available,is_delete,gmt_create,gmt_modify) 
-		values(#{name},#{type},#{parentId},#{menuURL},#{orderNo},#{code},#{icon},#{available},#{isDelete},sysdate(),sysdate());
+		insert into permissions (name,type,parent_id,menu_url,order_no,code,icon,available,is_deleted,gmt_create,gmt_modify) 
+		values(#{name},#{type},#{parentId},#{menuURL},#{orderNo},#{code},#{icon},#{available},#{isDeleted},sysdate(),sysdate());
 	</insert>
 	
+	<update id="editPermission" parameterType="permission">
+		update permissions 
+		
+		<set>
+			<if test="name != null">
+				name = #{name},
+			</if>
+			<if test="parentId != null">
+				parent_id = #{parentId},
+			</if>
+			<if test="menuURL != null">
+				menu_url = #{menuURL},
+			</if>
+			<if test="icon != null">
+				icon = #{icon},
+			</if>
+			<if test="available != null">
+				available = #{available},
+			</if>
+			<if test="orderNo != null">
+				order_no = #{orderNo},
+			</if>
+			gmt_modify=sysdate()
+		</set>
+		where id=#{id}
+	</update>
+	
 	<delete id="deletePermission">
-		delete from permissions where id = #{id}
+		update permissions set is_deleted=true where id = #{id}
 	</delete>
 	
 	<select id="selectPermissionsByUserName" resultType="String">
@@ -39,7 +80,13 @@
 					select id from users where user_name=#{0}
 				)
 			)
-		)
+		) where is_deleted=false
+	</select>
+	
+	<select id="getPermissionById" resultMap="permissionResultMap">
+		select 
+		<include refid="permissionColumns"></include>
+		 from permissions where is_deleted=false and id=#{0}
 	</select>
 	
 	<select id="queryPermissionsByUserName" resultMap="permissionResultMap">
@@ -51,6 +98,33 @@
 					select id from users where user_name=#{0}
 				)
 			)
-		)
+		) where is_deleted=false
+	</select>
+	
+	<select id="queryPermissions" resultMap="permissionResultMap" parameterType="com.rencw.dto.query.PermissionQuery">
+		select 
+		<include refid="permissionColumns"></include>
+		,(select count(1) from permissions t1 where t1.parent_id=t.id) children_count
+		from permissions t where t.is_deleted=false 
+		<if test="parentId != null">
+			and t.parent_id = #{parentId}
+		</if>
+		<if test="name != null">
+			and t.name like #{parentId}
+		</if>
+		<if test="available != null">
+			and t.available like CONCAT('%',#{available},'%')
+		</if>
+		<if test="type != null">
+			and t.type = #{type}
+		</if>
+		order by t.parent_id asc,t.order_no asc,t.id;
+<!-- 		<if test="start != 0 and end != 0"> -->
+<!-- 			limit #{start},#{end} -->
+<!-- 		</if> -->
+	</select>
+	
+	<select id="queryPermissionsCount" resultType="Long">
+		select count(1) from permissions where is_deleted=false
 	</select>
 </mapper>

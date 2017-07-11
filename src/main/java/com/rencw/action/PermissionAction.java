@@ -1,6 +1,5 @@
 package com.rencw.action;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -11,11 +10,13 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.rencw.common.enums.EnumsPermission;
 import com.rencw.common.enums.EnumsPermissionType;
+import com.rencw.dto.query.PermissionQuery;
 import com.rencw.dto.result.DatatablesViewPage;
 import com.rencw.dto.result.PageItem;
 import com.rencw.dto.result.PageResult;
@@ -39,28 +40,32 @@ public class PermissionAction {
 	private PermissionService permissionService;
 
 	@ResponseBody
-	@RequestMapping("/findPermissions.json")
-	public DatatablesViewPage<Permission> findPermissions(HttpServletRequest request, HttpServletResponse response,
-			ModelAndView modelAndView) {
-		
-		System.out.println("start:" + request.getParameter("start"));
-		System.out.println("draw:" + request.getParameter("draw"));
-		System.out.println("length:" + request.getParameter("length"));
-		
-		List<Permission> list = new ArrayList<Permission>();
-		Permission p = new Permission();
-		p.setCode("abc");
-		p.setName("234");
-		p.setOrderNo(1);
-		p.setAvailable(false);
-		list.add(p);
-		
-		DatatablesViewPage<Permission> viewPage = new DatatablesViewPage<Permission>();
-		viewPage.setDraw(Integer.parseInt(request.getParameter("draw")));
-		viewPage.setData(list);
-		viewPage.setRecordsFiltered(1L);
-		viewPage.setRecordsTotal(1L);
+	@RequestMapping("/queryPermissionsByPage.json")
+	public DatatablesViewPage<Permission> findPermissionsByPage(HttpServletRequest request, HttpServletResponse response,
+			PermissionQuery query) {
+		DatatablesViewPage<Permission> viewPage = permissionService.queryPermissionsByPage(query);
 		return viewPage;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/deletePermission.json")
+	public void deletePermission(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam(value="id",required=true) Long id) {
+		permissionService.deletePermission(id);
+	}
+	
+	@ResponseBody
+	@RequestMapping("/getPermissionById.json")
+	public Permission getPermissionById(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam(value="id") Long id) {
+		return permissionService.getPermissionById(id);
+	}
+	
+	@ResponseBody
+	@RequestMapping("/queryPermissions.json")
+	public List<Permission> queryPermissions(HttpServletRequest request, HttpServletResponse response,
+			PermissionQuery query) {
+		return permissionService.queryPermissions(query);
 	}
 	
 	/**  
@@ -105,10 +110,49 @@ public class PermissionAction {
 		return modelAndView;
 	}
 	
+	@RequestMapping("/editPermission.html")
+	public ModelAndView editPermission(HttpServletRequest request, HttpServletResponse response,
+			ModelAndView modelAndView, Permission permission) {
+		EnumsPermission result = verification(permission);
+		PageResult pageResult = new PageResult();
+		if(result.getCode() != 0) {
+			modelAndView.setViewName("error");
+			pageResult.setMessage(result.getMessage());
+			pageResult.setCode(result.getCode());
+			modelAndView.addObject("result", pageResult);
+			return modelAndView;
+		}
+		
+		try {
+			permissionService.editPermission(permission);
+			modelAndView.setViewName("success");
+			pageResult.setMessage(EnumsPermission.EDIT_SUCCES.getMessage());
+			pageResult.setCode(EnumsPermission.EDIT_SUCCES.getCode());
+			pageResult.addPageItem(new PageItem("/jsp/authority/permissionList.jsp", "返回权限列表"));
+			modelAndView.addObject("result", pageResult);
+		}catch (Exception e) {
+			logger.error("editPermission:",e);
+			pageResult.setMessage(EnumsPermission.ERROR_SERVER.getMessage());
+			pageResult.setCode(EnumsPermission.ERROR_SERVER.getCode());
+			modelAndView.addObject("result", pageResult);
+			modelAndView.setViewName("error");
+		}
+		return modelAndView;
+	}
+	
 	@RequestMapping("/toAddPermission.html")
 	public ModelAndView toAddPermission(HttpServletRequest request, HttpServletResponse response,
 			ModelAndView modelAndView, Permission permission) {
 		modelAndView.setViewName("authority/addPermission");
+		return modelAndView;
+	}
+	
+	@RequestMapping("/toEditPermission.html")
+	public ModelAndView toEditPermission(HttpServletRequest request, HttpServletResponse response,
+			ModelAndView modelAndView, @RequestParam(value="id") Long id) {
+		Permission permission = permissionService.getPermissionById(id);
+		modelAndView.setViewName("authority/editPermission");
+		modelAndView.addObject("permission", permission);
 		return modelAndView;
 	}
 

@@ -3836,6 +3836,10 @@ fieldset {
 .cropper .docs-cropped .modal-body>canvas {
     max-width: 100%
 }
+.modal-body { 
+    overflow-y: scroll; 
+    max-height:350px;
+} 
 .cropper .docs-diagram .modal-dialog {
     max-width: 352px
 }
@@ -4198,9 +4202,7 @@ ul.notifications {
 @media (max-width: 767px) {
    .dataTables_length { float:none; }
 }
-
-
-
+.treegrid-indent {width:16px; height: 16px; display: inline-block; position: relative;}
 
 /* CSS3 Checkbox */
 /*

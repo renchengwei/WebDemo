@@ -5,6 +5,7 @@ import java.util.Set;
 
 import org.springframework.stereotype.Repository;
 
+import com.rencw.dto.query.PermissionQuery;
 import com.rencw.pojo.Permission;
 
 /**  
@@ -53,7 +54,25 @@ public interface PermissionMapper {
      */
     public List<Permission> queryPermissionsByUserName(String userName);
     
-    public List<Permission> queryPermissionsByPage();
+    /**  
+     * @Title: queryPermissionsByPage  
+     * @Description: 分页查询权限 
+     * @param @param query
+     * @param @return    参数  
+     * @return List<Permission>    返回类型  
+     * @throws  
+     */
+    public List<Permission> queryPermissions(PermissionQuery query);
     
-    public Long queryPermissionsCount();
+    /**  
+     * @Title: queryPermissionsCount  
+     * @Description: 查询权限总记录数
+     * @param @param query
+     * @param @return    参数  
+     * @return Long    返回类型  
+     * @throws  
+     */
+    public Long queryPermissionsCount(PermissionQuery query);
+	public Permission getPermissionById(Long id);
+	public void editPermission(Permission permission);
 }

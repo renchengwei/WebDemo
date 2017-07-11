@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="zh">
   <head>
@@ -39,9 +40,27 @@
 							<span class="section">操作失败</span>
 							<div class="col-middle">
 								<div class="text-center text-center">
-									<h2 class="text-danger">权限名称不能为空！错误代码：2</h2>
+									<h2 class="text-danger">
+										<c:choose>
+											<c:when test="${not empty result}">
+												${result.message}
+											</c:when>
+											<c:otherwise>
+												操作失败！
+											</c:otherwise>
+										</c:choose>
+									</h2>
 									<p>
-										<a href="#" class="btn btn-link">返回上一页</a>
+										<c:choose>
+											<c:when test="${not empty result && not empty result.pageItems}">
+												<c:forEach items="${result.pageItems}" var="item">
+													<a href="${appServer}${item.url}" class="btn btn-link">${item.message }</a>
+												</c:forEach>
+											</c:when>
+											<c:otherwise>
+												<a href="javascript:history.go(-1);" class="btn btn-link">返回上一页</a>
+											</c:otherwise>
+										</c:choose>
 									</p>
 								</div>
 							</div>

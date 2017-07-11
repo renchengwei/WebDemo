@@ -22,7 +22,7 @@ public class User extends BaseBean {
     private String password;
     private String passwordSalt;
     private Boolean locked = Boolean.FALSE;
-    private Boolean isDelete = Boolean.FALSE;
+    private Boolean isDeleted = Boolean.FALSE;
     private Date gmtCreate;
     private Date gmtModify;
 
@@ -97,12 +97,12 @@ public class User extends BaseBean {
 		this.gmtModify = gmtModify;
 	}
 	
-	public Boolean getIsDelete() {
-		return isDelete;
+	public Boolean getIsDeleted() {
+		return isDeleted;
 	}
 
-	public void setIsDelete(Boolean isDelete) {
-		this.isDelete = isDelete;
+	public void setIsDeleted(Boolean isDeleted) {
+		this.isDeleted = isDeleted;
 	}
 
 	@Override

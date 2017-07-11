@@ -222,30 +222,7 @@ $(document).ready(function() {
 //}
 
 // Table
-$('table input').on('ifChecked', function () {
-	$(this).closest("tr").addClass('selected');
-	if(!$(this).closest("table").hasClass("multiple_choice")) {
-		$(this).closest("table").find("input").not(this).iCheck("uncheck");
-	}
-});
 
-$('table input').on('ifUnchecked', function () {
-	$(this).closest("tr").removeClass('selected');
-});
-
-$('table input.check-all').on('ifChecked', function () {
-	if($(this).closest("table").hasClass("multiple_choice")) {
-		$(this).closest("table").find("input").iCheck("check");
-		$(this).closest("table").find("tr").addClass('selected');
-	}
-});
-
-$('table input.check-all').on('ifUnchecked', function () {
-	if($(this).closest("table").hasClass("multiple_choice")) {
-		$(this).closest("table").find("input").iCheck("uncheck");
-		$(this).closest("table").find("tr").removeClass('selected');
-	}
-});
 
 // var checkState = '';
 //
@@ -2519,13 +2496,53 @@ if (typeof NProgress != 'undefined') {
 		        }
 		    } );
 			
-			$(".table").on('draw.dt', function() {
-				$('checkbox input').iCheck({
-					checkboxClass : 'icheckbox_flat-green'
-				});
-			});
+			$(".table").on('init.dt', tablecheck);
+			$(".table").on('draw.dt', tablecheck);
 		};
 	   
+		function tablecheck() {
+			$('checkbox input').iCheck({
+				checkboxClass : 'icheckbox_flat-green'
+			});
+			
+			$('input.flat').iCheck({
+                checkboxClass: 'icheckbox_flat-green',
+                radioClass: 'iradio_flat-green'
+            });
+			
+			$('table input').on('ifChecked', function () {
+				$(this).closest("tr").addClass('selected');
+				if(!$(this).closest("table").hasClass("multiple_choice")) {
+					$(this).closest("table").find("input").not(this).iCheck("uncheck");
+				}
+			});
+
+			$('table input').on('ifUnchecked', function () {
+				$(this).closest("tr").removeClass('selected');
+			});
+
+			$('table input.check-all').on('ifChecked', function () {
+				if($(this).closest("table").hasClass("multiple_choice")) {
+					$(this).closest("table").find("input").iCheck("check");
+					$(this).closest("table").find("tr").addClass('selected');
+				}
+			});
+
+			$('table input.check-all').on('ifUnchecked', function () {
+				if($(this).closest("table").hasClass("multiple_choice")) {
+					$(this).closest("table").find("input").iCheck("uncheck");
+					$(this).closest("table").find("tr").removeClass('selected');
+				}
+			});
+			
+			$(".table tbody tr").click(function(e) {
+				if(!$(this).closest("table").hasClass("multiple_choice")) {
+					$(this).closest("table").find("input").not(this).iCheck("uncheck");
+				}
+				$(this).find("input").iCheck("check");
+			});
+			
+		}
 			/* CHART - MORRIS  */
 		
 		function init_morris_charts() {

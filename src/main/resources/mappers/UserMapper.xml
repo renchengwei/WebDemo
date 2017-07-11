@@ -10,18 +10,18 @@
 		<result column="password" property="password"/>
 		<result column="password_salt" property="passwordSalt"/>
 		<result column="locked" property="locked"/>
-		<result column="is_delete" property="isDelete"/>
+		<result column="is_deleted" property="isDeleted"/>
 		<result column="gmt_create" property="gmtCreate"/>
 		<result column="gmt_modify" property="gmtModify"/>
 	</resultMap>
 	
 	<sql id="userColunms">
-		id,user_name,password,password_salt,locked,is_delete,gmt_create,gmt_modify
+		id,user_name,password,password_salt,locked,is_deleted,gmt_create,gmt_modify
 	</sql>
 	
 	<insert id="createUser" parameterType="user" keyProperty="id" useGeneratedKeys="true">
-		insert into users (user_name,password,password_salt,locked,is_delete,gmt_create,gmt_modify) 
-		values(#{userName},#{password},#{passwordSalt},#{locked},#{isDelete},sysdate(),sysdate());
+		insert into users (user_name,password,password_salt,locked,is_deleted,gmt_create,gmt_modify) 
+		values(#{userName},#{password},#{passwordSalt},#{locked},#{isDeleted},sysdate(),sysdate());
 	</insert>
 	
 	<update id="changePassword">
@@ -39,7 +39,7 @@
 	<select id="findByUserName" resultMap="userResultMap"> 
 		select 
 		<include refid="userColunms"></include>
-		 from users where user_name=#{userName}
+		 from users where user_name=#{userName} and is_deleted=false
 	</select>
 	
 	<select id="findById" resultMap="userResultMap"> 

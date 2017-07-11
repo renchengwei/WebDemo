@@ -1,5 +1,6 @@
 package com.rencw.dto.result;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**  
@@ -16,16 +17,15 @@ public class DatatablesViewPage<T> extends BaseResult {
 	 * @Fields field:TODO(用一句话描述这个变量表示什么)  
 	 */
 	private static final long serialVersionUID = 1L;
+	@SuppressWarnings("unused")
 	private Long recordsFiltered;
 	private Long recordsTotal;
-	private List<T> data;
+	private List<T> data = new ArrayList<T>();
 	private Integer draw;
 	public Long getRecordsFiltered() {
-		return recordsFiltered;
+		return recordsTotal;
 	}
-	public void setRecordsFiltered(Long recordsFiltered) {
-		this.recordsFiltered = recordsFiltered;
-	}
+	
 	public Long getRecordsTotal() {
 		return recordsTotal;
 	}

@@ -55,7 +55,7 @@
 												</c:forEach>
 											</c:when>
 											<c:otherwise>
-												<a href="#" class="btn btn-link">返回上一页</a>
+												<a href="javascript:history.go(-1);" class="btn btn-link">返回上一页</a>
 											</c:otherwise>
 										</c:choose>
 									</p>
