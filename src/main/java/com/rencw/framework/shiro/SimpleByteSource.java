@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.rencw.shiro;
+package com.rencw.framework.shiro;
 
 import java.io.File;
 import java.io.InputStream;

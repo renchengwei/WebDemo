@@ -15,8 +15,11 @@ public enum EnumsPermission {
 	ERROR_URL_NULL("菜单URL不能为空！",-2),
 	ERROR_ORDERNO_NULL("排序号不能为空！",-3),
 	ERROR_CODE_NULL("授权标识不能为空！",-4),
+	ERROR_ILLEGAL("非法操作！",-9998),
 	ERROR_SERVER("服务器异常！",-9999),
-	ERROR_TYPE_NULL("权限类型不能为空！",-6);
+	ERROR_TYPE_NULL("权限类型不能为空！",-6),
+	ERROR_PARENT_NULL("菜单父节点不能为空！",-7),
+	ERROR_CODE_EXIST("授权标识重复！",-8);
 	
 	private String message;
 	private Integer code;

@@ -1,4 +1,4 @@
-package com.rencw.shiro;
+package com.rencw.framework.shiro;
 
 import javax.annotation.Resource;
 
@@ -7,7 +7,7 @@ import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.ExcessiveAttemptsException;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 
-import com.rencw.shiro.redis.ShiroRedisManager;
+import com.rencw.framework.shiro.redis.ShiroRedisManager;
 
 public class RetryLimitHashedCredentialsMatcher extends HashedCredentialsMatcher {
 

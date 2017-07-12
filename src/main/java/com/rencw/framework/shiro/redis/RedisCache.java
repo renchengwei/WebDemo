@@ -1,4 +1,4 @@
-package com.rencw.shiro.redis;
+package com.rencw.framework.shiro.redis;
 
 import java.util.ArrayList;
 import java.util.Collection;

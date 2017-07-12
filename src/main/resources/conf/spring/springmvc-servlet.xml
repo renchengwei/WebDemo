@@ -68,7 +68,7 @@
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**"/>
-			<bean class="com.rencw.interceptor.ViewCommonInterceptor"/>
+			<bean class="com.rencw.framework.interceptor.ViewCommonInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>
 	

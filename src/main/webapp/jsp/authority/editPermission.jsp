@@ -88,7 +88,7 @@
                         <label for="code" class="control-label col-md-3 col-sm-3 col-xs-12">授权标识<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="code" name="code" data-parsley-group="group1" required class="form-control col-md-7 col-xs-12" value="${permission.code}"
+                          <input type="text" id="code" name="code" data-parsley-group="group1" readonly="readonly" required class="form-control col-md-7 col-xs-12" value="${permission.code}"
                           	placeholder="授权标识，如：user:list">
                         </div>
                       </div>
@@ -110,7 +110,7 @@
                         <label for="orderNo" class="control-label col-md-3 col-sm-3 col-xs-12">排序号<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="orderNo" name="orderNo" data-parsley-group="group1" required class="form-control col-md-7 col-xs-12" value="${permission.orderNo}">
+                          <input type="number" id="orderNo" name="orderNo" data-parsley-group="group1" required class="form-control col-md-7 col-xs-12" value="${permission.orderNo}">
                         </div>
                       </div>
                       <div class="form-group">

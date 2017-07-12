@@ -18,23 +18,30 @@
 		<result column="gmt_modify" property="gmtModify"/>
 		<result column="children_count" property="childrenCount"/>
 	</resultMap>
-	<resultMap type="permission" id="permissionResultMap1">
-		<id column="id" property="id"/>
-		<result column="name" property="name"/>
-		<result column="type" property="type"/>
-		<result column="parent_id" property="parentId"/>
-		<result column="menu_url" property="menuURL"/>
-		<result column="order_no" property="orderNo"/>
-		<result column="code" property="code"/>
-		<result column="icon" property="icon"/>
-		<result column="available" property="available"/>
-		<result column="is_deleted" property="isDeleted"/>
-		<result column="gmt_create" property="gmtCreate"/>
-		<result column="gmt_modify" property="gmtModify"/>
-	</resultMap>
 	
 	<sql id="permissionColumns">
 		id,name,type,parent_id,menu_url,order_no,code,icon,available,is_deleted,gmt_create,gmt_modify
+	</sql>
+	
+	<sql id="permissionQuery">
+		<if test="parentId != null">
+			and t.parent_id = #{parentId}
+		</if>
+		<if test="name != null">
+			and t.name like CONCAT('%',#{name},'%')
+		</if>
+		<if test="available != null">
+			and t.available = #{available}
+		</if>
+		<if test="type != null">
+			and t.type = #{type}
+		</if>
+		<if test="id != null">
+			and t.id = #{id}
+		</if>
+		<if test="code != null">
+			and t.code = #{code}
+		</if>
 	</sql>
 	
 	<insert id="addPermission" parameterType="permission" keyProperty="id" useGeneratedKeys="true">
@@ -44,7 +51,6 @@
 	
 	<update id="editPermission" parameterType="permission">
 		update permissions 
-		
 		<set>
 			<if test="name != null">
 				name = #{name},
@@ -101,30 +107,17 @@
 		) where is_deleted=false
 	</select>
 	
-	<select id="queryPermissions" resultMap="permissionResultMap" parameterType="com.rencw.dto.query.PermissionQuery">
+	<select id="queryPermissions" resultMap="permissionResultMap">
 		select 
 		<include refid="permissionColumns"></include>
 		,(select count(1) from permissions t1 where t1.parent_id=t.id) children_count
 		from permissions t where t.is_deleted=false 
-		<if test="parentId != null">
-			and t.parent_id = #{parentId}
-		</if>
-		<if test="name != null">
-			and t.name like #{parentId}
-		</if>
-		<if test="available != null">
-			and t.available like CONCAT('%',#{available},'%')
-		</if>
-		<if test="type != null">
-			and t.type = #{type}
-		</if>
+		<include refid="permissionQuery"></include>
 		order by t.parent_id asc,t.order_no asc,t.id;
-<!-- 		<if test="start != 0 and end != 0"> -->
-<!-- 			limit #{start},#{end} -->
-<!-- 		</if> -->
 	</select>
 	
 	<select id="queryPermissionsCount" resultType="Long">
-		select count(1) from permissions where is_deleted=false
+		select count(1) from permissions t where t.is_deleted=false
+		<include refid="permissionQuery"></include>
 	</select>
 </mapper>

@@ -1,4 +1,4 @@
-package com.rencw.shiro;
+package com.rencw.framework.shiro;
 
 import org.apache.shiro.crypto.RandomNumberGenerator;
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;

@@ -10,12 +10,12 @@ import org.springframework.stereotype.Service;
 import com.rencw.dao.mapper.PermissionMapper;
 import com.rencw.dao.mapper.RoleMapper;
 import com.rencw.dao.mapper.UserMapper;
+import com.rencw.framework.shiro.PasswordHelper;
 import com.rencw.pojo.Permission;
 import com.rencw.pojo.Role;
 import com.rencw.pojo.User;
 import com.rencw.pojo.UserRole;
 import com.rencw.service.UserService;
-import com.rencw.shiro.PasswordHelper;
 
 @Service
 public class UserServiceImpl implements UserService {

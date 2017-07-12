@@ -1,4 +1,4 @@
-package com.rencw.shiro.filter;
+package com.rencw.framework.shiro.filter;
 
 import java.io.Serializable;
 import java.util.Deque;
@@ -13,9 +13,9 @@ import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.AccessControlFilter;
 import org.apache.shiro.web.util.WebUtils;
 
-import com.rencw.shiro.redis.RedisSessionDAO;
-import com.rencw.shiro.redis.SerializeUtils;
-import com.rencw.shiro.redis.ShiroRedisManager;
+import com.rencw.framework.shiro.redis.RedisSessionDAO;
+import com.rencw.framework.shiro.redis.SerializeUtils;
+import com.rencw.framework.shiro.redis.ShiroRedisManager;
 
 public class KickoutSessionControlFilter extends AccessControlFilter{
 

@@ -2,6 +2,7 @@ package com.rencw.dto.query;
 
 public class PermissionQuery extends PageQuery {
 
+	private Long id;
 	private String name; //权限名称
 	private String type; //权限类型
 	private String code;
@@ -36,6 +37,12 @@ public class PermissionQuery extends PageQuery {
 	}
 	public void setParentId(String parentId) {
 		this.parentId = parentId;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 }

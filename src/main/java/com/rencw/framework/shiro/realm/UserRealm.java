@@ -1,4 +1,4 @@
-package com.rencw.shiro.realm;
+package com.rencw.framework.shiro.realm;
 
 import java.io.Serializable;
 
@@ -15,9 +15,9 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 
+import com.rencw.framework.shiro.SimpleByteSource;
 import com.rencw.pojo.User;
 import com.rencw.service.UserService;
-import com.rencw.shiro.SimpleByteSource;
 
 public class UserRealm extends AuthorizingRealm implements Serializable {
 

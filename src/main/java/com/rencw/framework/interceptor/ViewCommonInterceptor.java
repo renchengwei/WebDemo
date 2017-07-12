@@ -1,4 +1,4 @@
-package com.rencw.interceptor;
+package com.rencw.framework.interceptor;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -54,7 +54,6 @@ public class ViewCommonInterceptor implements HandlerInterceptor,ServletContextA
 			response.setDateHeader("Expires", -1);  
 			response.setDateHeader("max-age", 0); 
 		}
-		
 	}
 
 	@Override

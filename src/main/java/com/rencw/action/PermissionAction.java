@@ -89,6 +89,7 @@ public class PermissionAction {
 			pageResult.setMessage(result.getMessage());
 			pageResult.setCode(result.getCode());
 			modelAndView.addObject("result", pageResult);
+			logger.warn("PermissionAction.addPermission:" + result.getMessage());
 			return modelAndView;
 		}
 		
@@ -101,7 +102,7 @@ public class PermissionAction {
 			pageResult.addPageItem(new PageItem("/permission/toAddPermission.html", "继续新增权限"));
 			modelAndView.addObject("result", pageResult);
 		}catch (Exception e) {
-			logger.error("addPermission:",e);
+			logger.error("PermissionAction.addPermission:",e);
 			pageResult.setMessage(EnumsPermission.ERROR_SERVER.getMessage());
 			pageResult.setCode(EnumsPermission.ERROR_SERVER.getCode());
 			modelAndView.addObject("result", pageResult);
@@ -120,6 +121,16 @@ public class PermissionAction {
 			pageResult.setMessage(result.getMessage());
 			pageResult.setCode(result.getCode());
 			modelAndView.addObject("result", pageResult);
+			logger.error("PermissionAction.editPermission:" + pageResult.getMessage());
+			return modelAndView;
+		}
+		
+		if(permission.getId() == null) {
+			modelAndView.setViewName("error");
+			pageResult.setMessage(EnumsPermission.ERROR_ILLEGAL.getMessage());
+			pageResult.setCode(EnumsPermission.ERROR_ILLEGAL.getCode());
+			modelAndView.addObject("result", pageResult);
+			logger.error("PermissionAction.editPermission:" + pageResult.getMessage());
 			return modelAndView;
 		}
 		
@@ -131,7 +142,7 @@ public class PermissionAction {
 			pageResult.addPageItem(new PageItem("/jsp/authority/permissionList.jsp", "返回权限列表"));
 			modelAndView.addObject("result", pageResult);
 		}catch (Exception e) {
-			logger.error("editPermission:",e);
+			logger.error("PermissionAction.editPermission:",e);
 			pageResult.setMessage(EnumsPermission.ERROR_SERVER.getMessage());
 			pageResult.setCode(EnumsPermission.ERROR_SERVER.getCode());
 			modelAndView.addObject("result", pageResult);
@@ -143,6 +154,7 @@ public class PermissionAction {
 	@RequestMapping("/toAddPermission.html")
 	public ModelAndView toAddPermission(HttpServletRequest request, HttpServletResponse response,
 			ModelAndView modelAndView, Permission permission) {
+		int i = 3 / 0;
 		modelAndView.setViewName("authority/addPermission");
 		return modelAndView;
 	}
@@ -177,6 +189,13 @@ public class PermissionAction {
 		if (StringUtils.isBlank(permission.getCode())) {
 			return EnumsPermission.ERROR_CODE_NULL;
 		}
+		
+		PermissionQuery query = new PermissionQuery();
+		query.setCode(permission.getCode());
+		Long count = permissionService.queryPermissionsCount(query);
+		if(count > 0) {
+			return EnumsPermission.ERROR_ORDERNO_NULL;
+		}
 
 		if (permission.getOrderNo() == null) {
 			return EnumsPermission.ERROR_ORDERNO_NULL;
@@ -187,7 +206,7 @@ public class PermissionAction {
 		}
 
 		if (EnumsPermissionType.ENUM.getValue().equals(permission.getType()) && permission.getParentId() == null) {
-			return EnumsPermission.ERROR_TYPE_NULL;
+			return EnumsPermission.ERROR_PARENT_NULL;
 		}
 		return EnumsPermission.ADD_SUCCES;
 	}

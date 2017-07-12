@@ -1,4 +1,4 @@
-package com.rencw.shiro.redis;
+package com.rencw.framework.shiro.redis;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;

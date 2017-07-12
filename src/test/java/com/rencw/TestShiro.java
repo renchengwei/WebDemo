@@ -6,8 +6,8 @@ import org.apache.shiro.SecurityUtils;
 import org.junit.Test;
 
 import com.rencw.action.TestShiroAction;
+import com.rencw.framework.shiro.redis.RedisCacheManager;
 import com.rencw.pojo.User;
-import com.rencw.shiro.redis.RedisCacheManager;
 
 public class TestShiro extends TestSpringBase {
 

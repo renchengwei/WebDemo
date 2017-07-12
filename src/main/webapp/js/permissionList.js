@@ -21,7 +21,7 @@ $(document).ready(function() {
 		{ "data": "icon"},
 		{ "data": "available"},
 		{ "data": "orderNo"},
-		{ "data": ""},
+		{ "data": "id"},
 		{ "data": "childrenCount"}
 	  ],
 	  "columnDefs":[
