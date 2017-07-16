@@ -59,7 +59,6 @@ public class ViewCommonInterceptor implements HandlerInterceptor,ServletContextA
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
 			throws Exception {
-		
 	}
 
 	@Override

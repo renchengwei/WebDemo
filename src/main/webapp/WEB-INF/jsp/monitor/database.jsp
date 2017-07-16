@@ -8,7 +8,7 @@
 <body>
 	<section id="container">
 		<jsp:include page="/jsp/header.jsp" />
-		<jsp:include page="/jsp/left.jsp" />
+		<jsp:include page="/left.html" />
 		<!--main content start-->
 		<section id="main-content">
 			<section class="wrapper site-min-height">
@@ -17,7 +17,7 @@
 			</section>
 		</section>
 		<!--main content end-->
-		<jsp:include page="/jsp/footer.jsp" />
+		<jsp:include page="/footer.html" />
 	</section>
 	<jsp:include page="/jsp/commonjs.jsp" />
 	<!-- js placed at the end of the document so the pages load faster-->

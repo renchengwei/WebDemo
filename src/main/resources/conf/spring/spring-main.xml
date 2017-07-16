@@ -18,7 +18,7 @@
 
 	 <!-- 通过注释方式加入类（类必须在rcw路径下） -->
 	<context:component-scan base-package="com.rencw">
-		<context:exclude-filter type="regex" expression="com.rencw.action"/>
+		<context:exclude-filter type="regex" expression="com.rencw.controller"/>
 	</context:component-scan>
 	<context:annotation-config/>
 	<aop:config proxy-target-class="true"/>
@@ -32,8 +32,5 @@
 			</array>
 		</property>
 	</bean>
-	<bean class="com.rencw.framework.CustomExceptionHandler">
-		<property name="exceptionAttribute" value="ex"></property>
-        <property name="defaultErrorView" value="redirect:/error"></property>
-    </bean>
+	
 </beans>

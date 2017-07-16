@@ -32,8 +32,8 @@
   <body class="nav-md">
     <div class="container body">
       <div class="main_container">
-      	<jsp:include page="/jsp/left.jsp" />
-        <jsp:include page="/jsp/top.jsp" />
+      	<jsp:include page="/left.html" />
+        <jsp:include page="/top.html" />
 
         <!-- page content -->
         <div class="right_col" role="main">
@@ -70,7 +70,7 @@
           </div>
         </div>
        </div>
-       <jsp:include page="/jsp/footer.jsp" />
+       <jsp:include page="/footer.html" />
       </div>
     </div>
 	

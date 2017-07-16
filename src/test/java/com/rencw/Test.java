@@ -7,10 +7,7 @@ public class Test {
 
 	@org.junit.Test
 	public void test() {
-		List<String> s = new ArrayList<String>();
-		s.add("a");
-		s.add("c");
-		s.add(1, "b");
-		System.out.println(s);
+		String a = "/test.html";
+		System.out.println(a.substring(1, a.lastIndexOf('.')));
 	}
 }

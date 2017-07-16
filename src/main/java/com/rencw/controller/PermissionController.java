@@ -1,4 +1,4 @@
-package com.rencw.action;
+package com.rencw.controller;
 
 import java.util.List;
 
@@ -32,9 +32,9 @@ import com.rencw.service.PermissionService;
  */
 @Controller
 @RequestMapping("/permission")
-public class PermissionAction {
+public class PermissionController {
 
-	private static Logger logger = Logger.getLogger(PermissionAction.class);
+	private static Logger logger = Logger.getLogger(PermissionController.class);
 
 	@Resource
 	private PermissionService permissionService;
@@ -98,7 +98,7 @@ public class PermissionAction {
 			modelAndView.setViewName("success");
 			pageResult.setMessage(EnumsPermission.ADD_SUCCES.getMessage());
 			pageResult.setCode(EnumsPermission.ADD_SUCCES.getCode());
-			pageResult.addPageItem(new PageItem("/jsp/authority/permissionList.jsp", "返回权限列表"));
+			pageResult.addPageItem(new PageItem("/permission/permissionList.html", "返回权限列表"));
 			pageResult.addPageItem(new PageItem("/permission/toAddPermission.html", "继续新增权限"));
 			modelAndView.addObject("result", pageResult);
 		}catch (Exception e) {
@@ -139,7 +139,7 @@ public class PermissionAction {
 			modelAndView.setViewName("success");
 			pageResult.setMessage(EnumsPermission.EDIT_SUCCES.getMessage());
 			pageResult.setCode(EnumsPermission.EDIT_SUCCES.getCode());
-			pageResult.addPageItem(new PageItem("/jsp/authority/permissionList.jsp", "返回权限列表"));
+			pageResult.addPageItem(new PageItem("/permission/permissionList.html", "返回权限列表"));
 			modelAndView.addObject("result", pageResult);
 		}catch (Exception e) {
 			logger.error("PermissionAction.editPermission:",e);
@@ -154,8 +154,7 @@ public class PermissionAction {
 	@RequestMapping("/toAddPermission.html")
 	public ModelAndView toAddPermission(HttpServletRequest request, HttpServletResponse response,
 			ModelAndView modelAndView, Permission permission) {
-		int i = 3 / 0;
-		modelAndView.setViewName("authority/addPermission");
+		modelAndView.setViewName("permission/addPermission");
 		return modelAndView;
 	}
 	
@@ -163,7 +162,7 @@ public class PermissionAction {
 	public ModelAndView toEditPermission(HttpServletRequest request, HttpServletResponse response,
 			ModelAndView modelAndView, @RequestParam(value="id") Long id) {
 		Permission permission = permissionService.getPermissionById(id);
-		modelAndView.setViewName("authority/editPermission");
+		modelAndView.setViewName("permission/editPermission");
 		modelAndView.addObject("permission", permission);
 		return modelAndView;
 	}

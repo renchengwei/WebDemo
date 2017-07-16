@@ -25,7 +25,7 @@
                </li>
                <li><a><i class="fa fa-desktop"></i> 权限角色 <span class="fa fa-chevron-down"></span></a>
                  <ul class="nav child_menu">
-                   <li><a href="${appServer}/jsp/authority/permissionList.jsp">权限管理</a></li>
+                   <li><a href="${appServer}/permission/permissionList.html">权限管理</a></li>
                    <li><a href="media_gallery.html">角色管理</a></li>
                  </ul>
                </li>

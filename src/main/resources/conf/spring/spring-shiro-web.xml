@@ -46,10 +46,10 @@
 	</bean>
 	
 	<!-- 基于Form表单的身份验证过滤器 -->  
-	<bean id="formAuthenticationFilter" class="org.apache.shiro.web.filter.authc.FormAuthenticationFilter">
-		<property name="usernameParam" value="userName" />
-		<property name="passwordParam" value="password" />
-	</bean>
+<!-- 	<bean id="formAuthenticationFilter" class="org.apache.shiro.web.filter.authc.FormAuthenticationFilter"> -->
+<!-- 		<property name="usernameParam" value="userName" /> -->
+<!-- 		<property name="passwordParam" value="password" /> -->
+<!-- 	</bean> -->
 	
 	<!-- 并发登录控制过滤器 -->  
 	<bean id="kickoutSessionControlFilter" class="com.rencw.framework.shiro.filter.KickoutSessionControlFilter">
@@ -59,16 +59,15 @@
 	</bean>
 
 	<bean id="logout" class="org.apache.shiro.web.filter.authc.LogoutFilter"> 
-        <property name="redirectUrl" value="/login.jsp"/> 
+        <property name="redirectUrl" value="/login.html"/> 
     </bean>
     
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<property name="securityManager" ref="securityManager" />
-		<property name="loginUrl" value="/login.jsp"/>
-		<property name="successUrl" value="/index.html" />
+		<property name="loginUrl" value="/login.html"/>
 		<property name="filters">
 			<util:map>
-				<entry key="authc" value-ref="formAuthenticationFilter"/>
+<!-- 				<entry key="authc" value-ref="formAuthenticationFilter"/> -->
 				<entry key="kickout" value-ref="kickoutSessionControlFilter"/>
 			</util:map>
 		</property>
@@ -78,9 +77,10 @@
 				/css/** = anon
 				/images/** = anon
 				/js/** = anon
-				/login.jsp = authc
+				/login.html = anon
+				/doLogin.html = anon
 				/logout.jsp = logout
-				/** = kickout,user
+				/** = kickout,authc
 			</value>
 		</property>
 	</bean>
