@@ -44,7 +44,7 @@
 		<property name="port" value="${redis.port}" />
 		<property name="password" value="${redis.pass}" />
 		<property name="database" value="${redis.database}" />
-		<!-- redis集群配置，如果是单机注释次配置即可 -->
+		<!-- redis集群配置，如果是单机注释此配置即可 -->
 		<!-- <constructor-arg name="clusterConfig" ref="clusterConfig"/> -->
 		<!-- redis公用配置 -->
 		<property name="poolConfig" ref="poolConfig" />
@@ -53,9 +53,10 @@
 	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate"
 		p:connection-factory-ref="jedisConnectionFactory">
 	</bean>
-
-	<!-- <bean id="jedisCacheTemplate" class="org.springframework.data.redis.core.RedisTemplate" -->
-	<!-- p:connection-factory-ref="connectionFactory" /> -->
+	
+	<bean id="stringRedisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate"
+		p:connection-factory-ref="jedisConnectionFactory">
+    </bean>
 
 	<!-- MySql数据源配置 -->
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
@@ -120,7 +121,7 @@
 	</aop:config>
 	
 	<!-- 日志拦截 -->
-	<bean id="log-filter" class="com.alibaba.druid.filter.logging.Log4jFilter">
+	<bean id="log-filter" class="com.alibaba.druid.filter.logging.Slf4jLogFilter">
 		<property name="statementExecutableSqlLogEnable" value="true" />
 	</bean>
 	

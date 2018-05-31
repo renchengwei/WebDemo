@@ -18,14 +18,43 @@
 		id,name,available,description,is_deleted,gmt_create,gmt_modify
 	</sql>
 	
-	<insert id="createRole" parameterType="role" keyProperty="id" useGeneratedKeys="true">
+	<sql id="roleQuery">
+		<where>
+			is_deleted=false
+			<if test="name != null">
+				and t.name like CONCAT('%',#{name},'%')
+			</if>
+			<if test="available != null">
+				and t.available = #{available}
+			</if>
+		</where>
+	</sql>
+	
+	<insert id="addRole" parameterType="role" keyProperty="id" useGeneratedKeys="true">
 		insert into roles (name,available,description,is_deleted,gmt_create,gmt_modify) 
 		values(#{name},#{available},#{description},#{isDeleted},sysdate(),sysdate());
 	</insert>
 	
 	<delete id="deleteRole">
-		delete from roles where id = #{id}
+		update roles set is_deleted=true where id = #{id}
 	</delete>
+	
+	<update id="updateRole">
+		update roles 
+		<set>
+			<if test="name != null">
+				name = #{name},
+			</if>
+			<if test="description != null">
+				description = #{description},
+			</if>
+			<if test="available != null">
+				available = #{available},
+			</if>
+			gmt_modify=sysdate()
+		</set>
+		where id=#{id}
+	</update>
 	
 	<insert id="correlationPermissions" parameterType="rolePermission" keyProperty="id" useGeneratedKeys="true">
 		insert into roles_permissions(role_id,permission_id) values(#{roleId},#{permissionId})
@@ -51,5 +80,27 @@
 				select id from users where user_name=#{0}
 			) 
 		)
+	</select>
+	
+	<select id="queryRolesCount" resultType="Long">
+		select count(1) from roles 
+		<include refid="roleQuery"></include>
+	</select>
+	
+	<select id="queryRoles" resultMap="roleResultMap">
+		select 
+		<include refid="roleColunms"></include>
+		 from roles 
+		 <include refid="roleQuery"></include>
+		 order by id desc 
+	</select>
+	
+	<select id="queryRolesByPage" resultMap="roleResultMap">
+		select 
+		<include refid="roleColunms"></include>
+		 from roles 
+		 <include refid="roleQuery"></include>
+		 order by id desc 
+		 limit #{start},#{end} 
 	</select>
 </mapper>

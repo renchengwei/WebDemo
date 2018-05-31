@@ -13,25 +13,25 @@
     <title>Gentelella Alela! | </title>
 
     <!-- Bootstrap -->
-    <link href="${appServer}/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${staticServer}/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="${appServer}/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="${staticServer}/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- iCheck -->
-    <link href="${appServer}/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <link href="${staticServer}/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
     <!-- bootstrap-wysiwyg -->
-    <link href="${appServer}/vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
+    <link href="${staticServer}/vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
     <!-- ztree -->
-    <link rel="stylesheet" href="${appServer}/vendors/zTree/css/metroStyle/metroStyle.css" type="text/css">
+    <link rel="stylesheet" href="${staticServer}/vendors/zTree/css/metroStyle/metroStyle.css" type="text/css">
 
     <!-- Custom Theme Style -->
-    <link href="${appServer}/css/custom.css" rel="stylesheet">
+    <link href="${staticServer}/css/custom.css" rel="stylesheet">
   </head>
 
   <body class="nav-md">
     <div class="container body">
       <div class="main_container">
-        <jsp:include page="/left.html" />
-        <jsp:include page="/top.html" />
+        <jsp:include page="/left" />
+        <jsp:include page="/top" />
 
         <!-- page content -->
         <div class="right_col" role="main">
@@ -42,7 +42,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_content">
-                    <form id="form" action="${appServer}/permission/editPermission.html" class="form-horizontal form-label-left" data-parsley-validate>
+                    <form id="form" action="${appServer}/permission/editPermission" class="form-horizontal form-label-left" data-parsley-validate>
 					  <span class="section">编辑权限</span>
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">权限类型 <span class="required">*</span>
@@ -169,7 +169,7 @@
 		</div>
 
 		<!-- /page content -->
-        <jsp:include page="/footer.html" />
+        <jsp:include page="/footer" />
       </div>
     </div>
 

@@ -11,7 +11,7 @@
 		<spring.version>4.3.7.RELEASE</spring.version>
 		<druid-version>1.0.26</druid-version>
 		<junit-version>4.12</junit-version>
-		<log4j-version>1.2.14</log4j-version>
+		<!-- <log4j-version>1.2.14</log4j-version> -->
 		<jackson-version>2.5.1</jackson-version>
 		<hession-version>4.0.38</hession-version>
 		<standard-version>1.1.2</standard-version>
@@ -21,16 +21,19 @@
 		<mybatis-spring-version>1.3.1</mybatis-spring-version>
 		<shiro-version>1.3.2</shiro-version>
 		<slf4j-version>1.7.24</slf4j-version>
+		<logback-ext-version>0.1.4</logback-ext-version>
+		<logback-version>1.2.3</logback-version>
 		<jedis-version>2.9.0</jedis-version>
-		<spring-data-redis-version>1.8.1.RELEASE</spring-data-redis-version>
+		<spring-data-redis-version>1.8.9.RELEASE</spring-data-redis-version>
+		<javax-inject>1</javax-inject>
 	</properties>
 
 	<dependencies>
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.crazycake</groupId> -->
-<!-- 			<artifactId>shiro-redis</artifactId> -->
-<!-- 			<version>2.4.2.1-RELEASE</version> -->
-<!-- 		</dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.crazycake</groupId> -->
+		<!-- <artifactId>shiro-redis</artifactId> -->
+		<!-- <version>2.4.2.1-RELEASE</version> -->
+		<!-- </dependency> -->
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-redis</artifactId>
@@ -118,22 +121,23 @@
 		<!-- <artifactId>hessian</artifactId> -->
 		<!-- <version>${hession-version}</version> -->
 		<!-- </dependency> -->
-		<!-- log4j -->
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>${log4j-version}</version>
-		</dependency>
+		<!-- logback -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
+			<artifactId>jcl-over-slf4j</artifactId>
 			<version>${slf4j-version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>${slf4j-version}</version>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback-version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.logback-extensions</groupId>
+			<artifactId>logback-ext-spring</artifactId>
+			<version>${logback-ext-version}</version>
+		</dependency>
+
 		<!-- mysql -->
 		<dependency>
 			<groupId>mysql</groupId>
@@ -222,6 +226,12 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
 			<version>${spring.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -313,6 +323,11 @@
 			<artifactId>spring-test</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
+		<dependency>
+		    <groupId>javax.inject</groupId>
+		    <artifactId>javax.inject</artifactId>
+		    <version>${javax-inject}</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
@@ -325,6 +340,18 @@
 					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
+			<!-- <plugin> -->
+			<!-- <groupId>org.eclipse.jetty</groupId> -->
+			<!-- <artifactId>jetty-maven-plugin</artifactId> -->
+			<!-- <version>9.4.6.v20170531</version> -->
+			<!-- <configuration> -->
+			<!-- <httpConnector> -->
+			<!-- <port>8080</port> -->
+			<!-- <host>localhost</host> -->
+			<!-- </httpConnector> -->
+			<!-- <scanIntervalSeconds>1</scanIntervalSeconds> -->
+			<!-- </configuration> -->
+			<!-- </plugin> -->
 		</plugins>
 	</build>
 </project>

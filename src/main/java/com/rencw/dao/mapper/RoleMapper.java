@@ -5,6 +5,7 @@ import java.util.Set;
 
 import org.springframework.stereotype.Repository;
 
+import com.rencw.dto.query.RoleQuery;
 import com.rencw.pojo.Role;
 import com.rencw.pojo.RolePermission;
 
@@ -18,7 +19,9 @@ import com.rencw.pojo.RolePermission;
 @Repository
 public interface RoleMapper {
 
-	public void createRole(Role role);
+	public void addRole(Role role);
+	
+	public void updateRole(Role role);
 
 	public void deleteRole(Long roleId);
 
@@ -51,4 +54,10 @@ public interface RoleMapper {
      * @return
      */
     public Set<String> selectRolesByUserName(String userName);
+
+	public Long queryRolesCount(RoleQuery query);
+
+	public List<Role> queryRoles(RoleQuery query);
+	
+	public List<Role> queryRolesByPage(RoleQuery query);
 }

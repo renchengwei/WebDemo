@@ -13,7 +13,6 @@
         
      <!-- 通过注释方式加入类（类必须在rcw路径下） -->
 	<context:component-scan base-package="com.rencw.controller"/>
-	<context:component-scan base-package="com.rencw.framework.controller"/>
 	<!-- 文件上传 -->
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
@@ -26,9 +25,9 @@
 	<bean id="appProperty"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
-			<array>
+			<list>
 				<value>classpath:/conf/config.properties</value>
-			</array>
+			</list>
 		</property>
 	</bean>
 	
@@ -37,9 +36,9 @@
 	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
 	
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+<!-- 		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/> -->
 		<property name="prefix" value="/WEB-INF/jsp/"/>  
-    	<property name="suffix" value=".jsp"/>
+    		<property name="suffix" value=".jsp"/>
 	</bean>
 
 	<!-- Json输出 -->
@@ -65,7 +64,7 @@
 	<mvc:resources location="/vendors/" mapping="/vendors/**"/>
 	<mvc:resources location="/js/" mapping="/js/**"/>
 	<!-- 系统首页 -->
-	<mvc:view-controller path="/" view-name="redirect:/index.html"/>
+	<mvc:view-controller path="/" view-name="redirect:/index"/>
 	
 	<!-- 拦截器 -->
 	<mvc:interceptors>
@@ -78,7 +77,7 @@
 	<!-- 统一异常处理 -->
 	<bean class="com.rencw.framework.CustomExceptionHandler">
 		<property name="exceptionAttribute" value="ex"></property>
-        <property name="defaultErrorView" value="redirect:/error.html"></property>
+        <property name="defaultErrorView" value="redirect:/error"></property>
     </bean>
     
 	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor"/>

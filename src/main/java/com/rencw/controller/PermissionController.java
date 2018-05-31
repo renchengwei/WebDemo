@@ -7,7 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,14 +18,13 @@ import org.springframework.web.servlet.ModelAndView;
 import com.rencw.common.enums.EnumsPermission;
 import com.rencw.common.enums.EnumsPermissionType;
 import com.rencw.dto.query.PermissionQuery;
-import com.rencw.dto.result.DatatablesViewPage;
 import com.rencw.dto.result.PageItem;
 import com.rencw.dto.result.PageResult;
 import com.rencw.pojo.Permission;
 import com.rencw.service.PermissionService;
 
 /**
- * @ClassName: PermissionAction
+ * @ClassName: PermissionController
  * @Description: 权限视图控制器
  * @author renchengwei
  * @date 2017年6月17日
@@ -34,18 +34,19 @@ import com.rencw.service.PermissionService;
 @RequestMapping("/permission")
 public class PermissionController {
 
-	private static Logger logger = Logger.getLogger(PermissionController.class);
+	private static Logger logger = LoggerFactory.getLogger(PermissionController.class);
 
 	@Resource
 	private PermissionService permissionService;
 
-	@ResponseBody
-	@RequestMapping("/queryPermissionsByPage.json")
-	public DatatablesViewPage<Permission> findPermissionsByPage(HttpServletRequest request, HttpServletResponse response,
-			PermissionQuery query) {
-		DatatablesViewPage<Permission> viewPage = permissionService.queryPermissionsByPage(query);
-		return viewPage;
-	}
+//	@ResponseBody
+//	@RequestMapping("/queryPermissionsByPage.json")
+//	public DatatablesViewPage<Permission> findPermissionsByPage(HttpServletRequest request, HttpServletResponse response,
+//			PermissionQuery query) {
+//		DatatablesViewPage<Permission> viewPage = permissionService.queryPermissionsByPage(query);
+//		return viewPage;
+//	}
+	
 	
 	@ResponseBody
 	@RequestMapping("/deletePermission.json")
@@ -68,6 +69,11 @@ public class PermissionController {
 		return permissionService.queryPermissions(query);
 	}
 	
+	@RequestMapping("/permissionList")
+	public String permissionList(HttpServletRequest request, HttpServletResponse response) {
+		return "permission/permissionList";
+	}
+	
 	/**  
 	 * @Title: addPermission  
 	 * @Description: 新增权限
@@ -79,7 +85,7 @@ public class PermissionController {
 	 * @return ModelAndView    返回类型  
 	 * @throws  
 	 */
-	@RequestMapping("/addPermission.html")
+	@RequestMapping("/addPermission")
 	public ModelAndView addPermission(HttpServletRequest request, HttpServletResponse response,
 			ModelAndView modelAndView, Permission permission) {
 		EnumsPermission result = verification(permission);
@@ -89,7 +95,7 @@ public class PermissionController {
 			pageResult.setMessage(result.getMessage());
 			pageResult.setCode(result.getCode());
 			modelAndView.addObject("result", pageResult);
-			logger.warn("PermissionAction.addPermission:" + result.getMessage());
+			logger.warn("PermissionController.addPermission:" + result.getMessage());
 			return modelAndView;
 		}
 		
@@ -98,11 +104,11 @@ public class PermissionController {
 			modelAndView.setViewName("success");
 			pageResult.setMessage(EnumsPermission.ADD_SUCCES.getMessage());
 			pageResult.setCode(EnumsPermission.ADD_SUCCES.getCode());
-			pageResult.addPageItem(new PageItem("/permission/permissionList.html", "返回权限列表"));
-			pageResult.addPageItem(new PageItem("/permission/toAddPermission.html", "继续新增权限"));
+			pageResult.addPageItem(new PageItem("/permission/permissionList", "返回权限列表"));
+			pageResult.addPageItem(new PageItem("/permission/toAddPermission", "继续新增权限"));
 			modelAndView.addObject("result", pageResult);
 		}catch (Exception e) {
-			logger.error("PermissionAction.addPermission:",e);
+			logger.error("PermissionController.addPermission:",e);
 			pageResult.setMessage(EnumsPermission.ERROR_SERVER.getMessage());
 			pageResult.setCode(EnumsPermission.ERROR_SERVER.getCode());
 			modelAndView.addObject("result", pageResult);
@@ -111,7 +117,7 @@ public class PermissionController {
 		return modelAndView;
 	}
 	
-	@RequestMapping("/editPermission.html")
+	@RequestMapping("/editPermission")
 	public ModelAndView editPermission(HttpServletRequest request, HttpServletResponse response,
 			ModelAndView modelAndView, Permission permission) {
 		EnumsPermission result = verification(permission);
@@ -121,7 +127,7 @@ public class PermissionController {
 			pageResult.setMessage(result.getMessage());
 			pageResult.setCode(result.getCode());
 			modelAndView.addObject("result", pageResult);
-			logger.error("PermissionAction.editPermission:" + pageResult.getMessage());
+			logger.error("PermissionController.editPermission:" + pageResult.getMessage());
 			return modelAndView;
 		}
 		
@@ -130,7 +136,7 @@ public class PermissionController {
 			pageResult.setMessage(EnumsPermission.ERROR_ILLEGAL.getMessage());
 			pageResult.setCode(EnumsPermission.ERROR_ILLEGAL.getCode());
 			modelAndView.addObject("result", pageResult);
-			logger.error("PermissionAction.editPermission:" + pageResult.getMessage());
+			logger.error("PermissionController.editPermission:" + pageResult.getMessage());
 			return modelAndView;
 		}
 		
@@ -139,10 +145,10 @@ public class PermissionController {
 			modelAndView.setViewName("success");
 			pageResult.setMessage(EnumsPermission.EDIT_SUCCES.getMessage());
 			pageResult.setCode(EnumsPermission.EDIT_SUCCES.getCode());
-			pageResult.addPageItem(new PageItem("/permission/permissionList.html", "返回权限列表"));
+			pageResult.addPageItem(new PageItem("/permission/permissionList", "返回权限列表"));
 			modelAndView.addObject("result", pageResult);
 		}catch (Exception e) {
-			logger.error("PermissionAction.editPermission:",e);
+			logger.error("PermissionController.editPermission:",e);
 			pageResult.setMessage(EnumsPermission.ERROR_SERVER.getMessage());
 			pageResult.setCode(EnumsPermission.ERROR_SERVER.getCode());
 			modelAndView.addObject("result", pageResult);
@@ -151,14 +157,12 @@ public class PermissionController {
 		return modelAndView;
 	}
 	
-	@RequestMapping("/toAddPermission.html")
-	public ModelAndView toAddPermission(HttpServletRequest request, HttpServletResponse response,
-			ModelAndView modelAndView, Permission permission) {
-		modelAndView.setViewName("permission/addPermission");
-		return modelAndView;
+	@RequestMapping("/toAddPermission")
+	public String toAddPermission(HttpServletRequest request, HttpServletResponse response) {
+		return "permission/addPermission";
 	}
 	
-	@RequestMapping("/toEditPermission.html")
+	@RequestMapping("/toEditPermission")
 	public ModelAndView toEditPermission(HttpServletRequest request, HttpServletResponse response,
 			ModelAndView modelAndView, @RequestParam(value="id") Long id) {
 		Permission permission = permissionService.getPermissionById(id);

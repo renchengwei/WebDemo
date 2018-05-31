@@ -7,6 +7,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 
 public class TestRedis extends TestSpringBase {
 
@@ -14,14 +15,16 @@ public class TestRedis extends TestSpringBase {
 	private RedisTemplate<String, String> redisTemplate;
 	@Test
 	public void test1() {
-		
-		redisTemplate.execute(new RedisCallback<Object>() {
-			@Override
-			public Object doInRedis(RedisConnection connection) throws DataAccessException {
-				connection.set("abc".getBytes(), "456".getBytes());
-				return null;
-			}
-		});
+		ValueOperations<String, String> oper = redisTemplate.opsForValue();
+		oper.set("rencw1", "任成威");
+		System.out.println(oper.get("rencw1"));
+//		redisTemplate.execute(new RedisCallback<Object>() {
+//			@Override
+//			public Object doInRedis(RedisConnection connection) throws DataAccessException {
+//				connection.set("abc".getBytes(), "456".getBytes());
+//				return null;
+//			}
+//		});
 	}
 	
 	@Test

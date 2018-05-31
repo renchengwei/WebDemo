@@ -92,46 +92,46 @@ $(document).ready(function() {
 		  }
 	  ],
 	  "dom": "<'row'<'menutool col-xs-6'><'searchtool col-xs-6 text-right'>>rt",
-		  initComplete: function () {
-			$(".searchtool").append("<input type='text' id='first-name' placeholder='名称' class='form-control'>");
-			$(".searchtool").append("<button id='datainit' type='button' class='btn btn-default'> 查询</button>");
-			$(".menutool").append("<button id='add' type='button' class='btn btn-primary'><span class='fa fa-plus'></span> 新增</button>");
-		 	$("#add").click(addpermission);
-		 	var table = $('#datatable-checkbox').DataTable();
-		 	table.rows().iterator( 'row', function ( context, index ) {
-		 		var parentId = this.row(index).data().parentId;
-		 		var childrenCount = this.row(index).data().childrenCount;
-		 		this.row(index).data().isopen=false;
-		 		
-		 		if(parentId != -1) {
-		 			this.row( index ).node().hidden=true;
-		 		}
-		 	} );
-		 	
-		 	$("table tbody tr td a").click(function(){
-		 		var id = $(this).attr("id");
-		 		var flag;
-		 		if($(this).hasClass("fa fa-chevron-right")) {
-		 			$(this).removeClass("fa fa-chevron-right");
-		 			$(this).addClass("fa fa-chevron-down");
-		 			showChildren(id);
-		 			flag = true;
-		 		}else if($(this).hasClass("fa fa-chevron-down")) {
-		 			$(this).removeClass("fa fa-chevron-down");
-		 			$(this).addClass("fa fa-chevron-right");
-		 			hideChildren(id);
-		 			flag = false;
-		 		}
-		 		
-		 		var table = $('#datatable-checkbox').DataTable();
-		 	 	table.rows().iterator( 'row', function ( context, index ) {
-		 	 		var currentId = this.row(index).data().id;
-		 	 		if(currentId == id) {
-		 	 			this.row(index).data().isopen=flag;
-		 	 		}
-		 	 	} );
-		 	});
-		  }
+	  initComplete: function () {
+		$(".searchtool").append("<input type='text' id='first-name' placeholder='名称' class='form-control'>");
+		$(".searchtool").append("<button id='datainit' type='button' class='btn btn-default'> 查询</button>");
+		$(".menutool").append("<button id='add' type='button' class='btn btn-primary'><span class='fa fa-plus'></span> 新增</button>");
+	 	$("#add").click(addpermission);
+	 	var table = $('#datatable-checkbox').DataTable();
+	 	table.rows().iterator( 'row', function ( context, index ) {
+	 		var parentId = this.row(index).data().parentId;
+	 		var childrenCount = this.row(index).data().childrenCount;
+	 		this.row(index).data().isopen=false;
+	 		
+	 		if(parentId != -1) {
+	 			this.row( index ).node().hidden=true;
+	 		}
+	 	} );
+	 	
+	 	$("table tbody tr td a").click(function(){
+	 		var id = $(this).attr("id");
+	 		var flag;
+	 		if($(this).hasClass("fa fa-chevron-right")) {
+	 			$(this).removeClass("fa fa-chevron-right");
+	 			$(this).addClass("fa fa-chevron-down");
+	 			showChildren(id);
+	 			flag = true;
+	 		}else if($(this).hasClass("fa fa-chevron-down")) {
+	 			$(this).removeClass("fa fa-chevron-down");
+	 			$(this).addClass("fa fa-chevron-right");
+	 			hideChildren(id);
+	 			flag = false;
+	 		}
+	 		
+	 		var table = $('#datatable-checkbox').DataTable();
+	 	 	table.rows().iterator( 'row', function ( context, index ) {
+	 	 		var currentId = this.row(index).data().id;
+	 	 		if(currentId == id) {
+	 	 			this.row(index).data().isopen=flag;
+	 	 		}
+	 	 	} );
+	 	});
+	  }
 	}
 	  );
 });
@@ -163,11 +163,11 @@ function hideChildren(id) {
 
 //新增权限
 function addpermission() {
-	window.location= appServer + "/permission/toAddPermission.html";
+	window.location= appServer + "/permission/toAddPermission";
 }
 
 function toedittepermission(id) {
-	window.location= appServer + "/permission/toEditPermission.html?id=" + id;
+	window.location= appServer + "/permission/toEditPermission?id=" + id;
 }
 
 //删除权限

@@ -2,11 +2,16 @@ package com.rencw.service;
 
 import java.util.List;
 
+import com.rencw.dto.query.RoleQuery;
+import com.rencw.dto.result.DatatablesViewPage;
 import com.rencw.pojo.Role;
 import com.rencw.pojo.RolePermission;
 
 public interface RoleService {
-	public Role createRole(Role role);
+	
+	public Role addRole(Role role);
+	
+	public void updateRole(Role role);
 
 	public void deleteRole(Long roleId);
 
@@ -26,4 +31,8 @@ public interface RoleService {
 	 */
 	public void uncorrelationPermissions(List<RolePermission> rolePermissionList);
 
+	public DatatablesViewPage<Role> queryRolesByPage(RoleQuery query);
+
+	public Role getRoleById(Long id);
+	
 }

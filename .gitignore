@@ -6,3 +6,5 @@
 /.settings/
 */.gitignore
 /src/main/webapp/js/.DS_Store
+/.idea
+WebDemo.iml

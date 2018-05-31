@@ -12,22 +12,22 @@
     <title>Gentelella Alela! | </title>
 
     <!-- Bootstrap -->
-    <link href="${appServer}/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${staticServer}/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="${appServer}/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="${staticServer}/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- NProgress -->
-    <link href="${appServer}/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <link href="${staticServer}/vendors/nprogress/nprogress.css" rel="stylesheet">
     <!-- bootstrap-progressbar -->
-    <link href="${appServer}/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <link href="${staticServer}/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
     <!-- Custom Theme Style -->
-    <link href="${appServer}/css/custom.min.css" rel="stylesheet">
+    <link href="${staticServer}/css/custom.min.css" rel="stylesheet">
   </head>
 
   <body class="nav-md">
     <div class="container body">
       <div class="main_container">
-        <jsp:include page="/left.html" />
-        <jsp:include page="/top.html" />
+        <jsp:include page="/left" />
+        <jsp:include page="/top" />
 
         <!-- page content -->
         <div class="right_col" role="main">
@@ -138,7 +138,7 @@
           </div>
         </div>
         <!-- /page content -->
-		<jsp:include page="/footer.html" />
+		<jsp:include page="/footer" />
       </div>
     </div>
 

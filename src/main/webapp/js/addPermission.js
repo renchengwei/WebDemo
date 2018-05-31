@@ -68,7 +68,7 @@ $(document).ready(function() {
 	});
 	
 	$("#btnback").click(function() {
-		window.location.href= appServer + "/permission/permissionList.html";
+		window.location.href= appServer + "/permission/permissionList";
 	});
 	
 	$("#form").parsley();

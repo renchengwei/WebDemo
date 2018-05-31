@@ -12,16 +12,16 @@
     <title>Gentelella Alela! | </title>
 
     <!-- Bootstrap -->
-    <link href="${appServer}/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${staticServer}/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="${appServer}/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="${staticServer}/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- NProgress -->
-    <link href="${appServer}/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <link href="${staticServer}/vendors/nprogress/nprogress.css" rel="stylesheet">
     <!-- Animate.css -->
-    <link href="${appServer}/vendors/animate.css/animate.min.css" rel="stylesheet">
+    <link href="${staticServer}/vendors/animate.css/animate.min.css" rel="stylesheet">
 
     <!-- Custom Theme Style -->
-    <link href="${appServer}/css/custom.min.css" rel="stylesheet">
+    <link href="${staticServer}/css/custom.min.css" rel="stylesheet">
   </head>
 
   <body class="login">
@@ -32,7 +32,7 @@
       <div class="login_wrapper">
         <div class="animate form login_form">
           <section class="login_content">
-            <form method="post" action="/WebDemo/doLogin.html">
+            <form method="post" action="${appServer}/login">
               <h1>系统登陆</h1>
               <div>
                 <input type="text" class="form-control" placeholder="userName" name="userName" required="" />
@@ -79,7 +79,7 @@
                 <input type="password" class="form-control" placeholder="Password" required="" />
               </div>
               <div>
-                <a class="btn btn-default submit" href="index.html">Submit</a>
+                <a class="btn btn-default submit" href="index">Submit</a>
               </div>
 
               <div class="clearfix"></div>

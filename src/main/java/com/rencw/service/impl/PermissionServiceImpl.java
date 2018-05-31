@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import com.rencw.common.enums.EnumsPermissionType;
 import com.rencw.dao.mapper.PermissionMapper;
 import com.rencw.dto.query.PermissionQuery;
-import com.rencw.dto.result.DatatablesViewPage;
 import com.rencw.pojo.Permission;
 import com.rencw.service.PermissionService;
 
@@ -35,21 +34,20 @@ public class PermissionServiceImpl implements PermissionService {
 		permissionMapper.deletePermission(permissionId);
 	}
 
-	@Override
-	public DatatablesViewPage<Permission> queryPermissionsByPage(PermissionQuery query) {
-		DatatablesViewPage<Permission> viewPage = new DatatablesViewPage<Permission>();
-		
-		viewPage.setDraw(query.getDraw());
-		Long count = permissionMapper.queryPermissionsCount(query);
-		List<Permission> permissionList = new ArrayList<Permission>();
-		if(count > 0) {
-			permissionList = permissionMapper.queryPermissions(query);
-			viewPage.setData(permissionList);
-		}
-		
-		viewPage.setRecordsTotal(count);
-		return viewPage;
-	}
+//	@Override
+//	public DatatablesViewPage<Permission> queryPermissionsByPage(PermissionQuery query) {
+//		DatatablesViewPage<Permission> viewPage = new DatatablesViewPage<Permission>();
+//		viewPage.setDraw(query.getDraw());
+//		Long count = permissionMapper.queryPermissionsCount(query);
+//		List<Permission> permissionList = new ArrayList<Permission>();
+//		if(count > 0) {
+//			permissionList = permissionMapper.queryPermissions(query);
+//			viewPage.setData(permissionList);
+//		}
+//		
+//		viewPage.setRecordsTotal(count);
+//		return viewPage;
+//	}
 
 	@Override
 	public Long queryPermissionsCount(PermissionQuery query) {
